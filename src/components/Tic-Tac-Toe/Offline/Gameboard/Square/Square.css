@@ -1,0 +1,20 @@
+.box {
+  text-align: center;
+  font-size: 30px;
+  font-family: 'Comic Sans' cursive;
+  display: flex;
+  border-collapse: collapse;
+  height: 100px;
+  width: 100px;
+  border: 1px solid black;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.oneWinner {
+  background-color: red;
+}
+
+.twoWinner {
+  background-color: blue;
+}

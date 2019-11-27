@@ -1,0 +1,13 @@
+h2 {
+  margin: 10px 0;
+  text-align: center;
+}
+.stats {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.Two,
+.Three {
+  margin: 0 30px;
+}

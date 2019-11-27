@@ -1,0 +1,5 @@
+.typeSelect {
+  display: flex;
+  flex-direction: column;
+  max-width: 150px;
+}
