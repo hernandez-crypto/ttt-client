@@ -1,7 +1,6 @@
 {
   "name": "game-client",
   "version": "0.0.1",
-  "homepage": "http://hernandez-crypto.github.io/ttt-client",
   "description": "",
   "scripts": {
     "start": "react-scripts start",
