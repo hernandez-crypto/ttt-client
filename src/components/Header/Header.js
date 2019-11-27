@@ -13,7 +13,7 @@ export default class Header extends Component {
       <>
         <h2>{TokenService.getAuthName()}</h2>
         <div className="Header__logged-in">
-          <Link onClick={this.handleLogoutClick} to="/tic-tac-toe">
+          <Link onClick={this.handleLogoutClick} to="/">
             <h3>Logout</h3>
           </Link>
         </div>
@@ -29,6 +29,9 @@ export default class Header extends Component {
       </div>
     );
   }
+  /* {TokenService.hasAuthToken()
+            ? this.renderLogoutLink()
+            : this.renderLoginLink()} */
 
   render() {
     return (
@@ -38,9 +41,6 @@ export default class Header extends Component {
             <Link to="/">Tic-Tac-Toe</Link>
           </h1>
           <span className="Header__tagline--wide"></span>
-          {/* {TokenService.hasAuthToken()
-            ? this.renderLogoutLink()
-            : this.renderLoginLink()} */}
           {TokenService.hasAuthToken() ? this.renderLoggedInItems() : () => {}}
         </nav>
       </>

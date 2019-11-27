@@ -1,22 +1,22 @@
-function isFull(board) {
-  let openSquare = board.find(item => typeof item === 'number');
-  if (!openSquare) {
-    return true;
-  }
-  return false;
-}
-function isEmpty(board) {
-  let openSquare = board.find(item => typeof item === 'number');
-  if (openSquare) {
-    return true;
-  }
-  return false;
-}
-function insertNewMove(board, symbol, index) {
-  if (index > 8 || typeof board[index] === 'string') return false;
-  board[index] = symbol;
-  return true;
-}
+// function isFull(board) {
+//   let openSquare = board.find(item => typeof item === 'number');
+//   if (!openSquare) {
+//     return true;
+//   }
+//   return false;
+// }
+// function isEmpty(board) {
+//   let openSquare = board.find(item => typeof item === 'number');
+//   if (openSquare) {
+//     return true;
+//   }
+//   return false;
+// }
+// function insertNewMove(board, symbol, index) {
+//   if (index > 8 || typeof board[index] === 'string') return false;
+//   board[index] = symbol;
+//   return true;
+// }
 function getAvailableMoves(board) {
   const moves = [];
   board.forEach((square, index) => {

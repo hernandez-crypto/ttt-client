@@ -103,7 +103,6 @@ export default class TicTacToe extends Component {
 
   render() {
     let { playerOne, playerTwo, currentPlayer, board, error } = this.state;
-    console.log(this.state);
     return (
       <div className="tic-tac-toe-board">
         <div role="alert">{error && <p className="red">{error}</p>}</div>

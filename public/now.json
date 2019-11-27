@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "alias": "ttt-client",
+  "name": "tic-tac-toe-client",
+  "routes": [
+    {
+      "src": "^/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
+      "src": ".*",
+      "dest": "/index.html"
+    }
+  ]
+}
