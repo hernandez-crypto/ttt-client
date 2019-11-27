@@ -94,7 +94,6 @@ export default class ComputerPlayer {
       }
       return 0;
     }
-
     if (maximizing) {
       let best = -100;
       getAvailableMoves(board).forEach(index => {

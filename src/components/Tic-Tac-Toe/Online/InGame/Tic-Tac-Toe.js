@@ -93,25 +93,34 @@ export default class TicTacToe extends Component {
       updatedBoard[squareNumber] = client_user.symbol;
       BoardApiService.patchNewMove(gameRoom, updatedBoard, otherUserId).then(
         res => {
-          this.setState({
-            board: res.board,
-            currentPlayer: res.current_player,
-          });
+          res.winner
+            ? this.setState({
+                [res.winner]: {
+                  ...[res.winner],
+                  score: [res.winner.score] + 1, //should make a new call to restart the game
+                },
+                board: res.board,
+                currentPlayer: res.current_player,
+              })
+            : this.setState({
+                board: res.board,
+                currentPlayer: res.current_player,
+              });
         }
       );
-    } else this.setState({ error: 'No sir' });
+    } else this.setState({ error: 'Please Wait' });
   };
 
   render() {
     let { playerOne, playerTwo, currentPlayer, board, error } = this.state;
     return (
       <div className="tic-tac-toe-board">
-        <div role="alert">{error && <p className="red">{error}</p>}</div>
         <Board
           setChoice={this.setChoice}
           currentPlayer={currentPlayer}
           board={board}
         />
+        <div role="alert">{error && <p className="red">{error}</p>}</div>
         <Legend
           currentPlayer={currentPlayer}
           playerOne={playerOne}

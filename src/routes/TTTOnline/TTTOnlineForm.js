@@ -1,4 +1,4 @@
-import TicTacToeForm from '../../components/Tic-Tac-Toe/Online/JoinGameForm/JoinGameForm';
+import TicTacToeForm from '../../components/Tic-Tac-Toe/Online/GameForm/GameForm';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Section } from '../../components/Utils/Utils';
@@ -20,7 +20,6 @@ export default class TTTOnlineForm extends Component {
           <Link to="/">
             <h3>Play Offline</h3>
           </Link>
-          <p>Play with a friend!</p>
           <TicTacToeForm onJoinSuccess={this.onJoinSuccess} />
         </Section>
       </div>

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import TokenService from '../../services/token-service';
 import AuthApiService from '../../services/auth-api-service';
 import { Button, Input } from '../Utils/Utils';
-import { Link } from 'react-router-dom';
 
 export default class LoginForm extends Component {
   static defaultProps = {
@@ -52,9 +51,6 @@ export default class LoginForm extends Component {
           ></Input>
         </div>
         <Button type="submit">Login</Button>
-        <Button>
-          <Link to="/register">Register</Link>
-        </Button>
       </form>
     );
   }

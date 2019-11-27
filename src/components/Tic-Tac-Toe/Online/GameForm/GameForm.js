@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import BoardApiService from '../../../../services/board-api-service';
-import { Button, Input, Required } from '../../../Utils/Utils';
-import './JoinGameForm.css';
+import { Button, Input } from '../../../Utils/Utils';
+import './GameForm.css';
 
 export default class JoinGameForm extends Component {
   static defaultProps = {
@@ -42,24 +42,29 @@ export default class JoinGameForm extends Component {
   render() {
     const { error } = this.state;
     return (
-      <>
-        <Button onClick={() => this.createNewGame()}>Create</Button>
+      <div className="GameFormContainer">
+        <div className="CreateNewGameRoom_div">
+          <label htmlFor="CreateNewGameRoom">Create New Game</label>
+          <Button id="CreateNewGameRoom" onClick={() => this.createNewGame()}>
+            Create
+          </Button>
+        </div>
+
         <form className="JoinGameForm" onSubmit={this.handleJoinSubmit}>
           <div role="alert">{error && <p className="red">{error}</p>}</div>
           <div className="JoinGameFormInputs">
-            <label htmlFor="JoinGameForm__game_room">
-              Insert Game Room <Required />
-            </label>
+            <label htmlFor="JoinGameForm__game_room">Insert Game Room</label>
             <Input
               name="game_room"
               type="text"
+              placeholder="ex. fasd7as78d"
               required
               id="JoinGameForm__game_room"
             ></Input>
           </div>
           <Button type="submit">Join</Button>
         </form>
-      </>
+      </div>
     );
   }
 }

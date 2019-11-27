@@ -10,9 +10,7 @@ export default class GameModeSelector extends Component {
           value={this.props.Computer}
           onChange={this.props.selectBotDifficulty}
         >
-          <option value="" selected disabled hidden>
-            Select GameMode
-          </option>
+          <option value="none">Select GameMode</option>
           <option value="0">Local 1v1</option>
           <option value="1">Easy - Working</option>
           <option value="2">Medium - Under Construction</option>
