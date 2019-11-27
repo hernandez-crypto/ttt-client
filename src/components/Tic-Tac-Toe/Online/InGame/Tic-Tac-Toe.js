@@ -73,6 +73,7 @@ export default class TicTacToe extends Component {
   }
 
   setChoice = squareNumber => {
+    this.makeFetchCall();
     let {
       currentPlayer,
       client_user,
