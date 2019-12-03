@@ -10,7 +10,6 @@ export default class TTTOffline extends Component {
         <Link to="/online">
           <h3>Play Online</h3>
         </Link>
-        <p>Unbeatable AI coming soon</p>
         <TicTacToeOffline />
       </Section>
     );

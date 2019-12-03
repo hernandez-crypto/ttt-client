@@ -4,8 +4,8 @@
   font-family: 'Comic Sans' cursive;
   display: flex;
   border-collapse: collapse;
-  height: 100px;
-  width: 100px;
+  height: 33.3%;
+  width: 33.3%;
   border: 1px solid black;
   justify-content: center;
   align-items: center;

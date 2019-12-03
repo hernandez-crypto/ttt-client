@@ -5,7 +5,7 @@
 
 .Input,
 .Textarea {
-  border: 1px solid #ddd;
+  border: 1px solid black;
   display: block;
   font-size: 1.1em;
   margin-bottom: 10px;
@@ -25,12 +25,12 @@
 }
 
 .Button {
-  order: 1px solid #aaa;
-  background-color: #eee;
-  font-size: 1.1em;
-  border-radius: 4px;
-  padding: 8px 12px;
-  font-weight: bold;
+  display: flex;
+  font-family: 'Permanent Marker', cursive;
+  justify-content: center;
+  border: 1px solid black;
+  border-radius: 5px;
+  font-size: 15px;
 }
 
 .Required {

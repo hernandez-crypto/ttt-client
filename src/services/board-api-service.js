@@ -42,7 +42,7 @@ const BoardApiService = {
         authorization: `bearer ${TokenService.getAuthToken()}`,
       },
       body: JSON.stringify({
-        board: this.boardArrayToString(updatedBoard),
+        board: updatedBoard.join(''),
         next_player: next_player_id,
       }),
     })
@@ -50,21 +50,9 @@ const BoardApiService = {
         !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
       )
       .then(res => {
-        if (typeof res.board === 'string') {
-          res.board = res.board.split('');
-        }
+        res.board = res.board.split('');
         return res;
       });
-  },
-  boardStringToArray(board) {
-    let newArr = [];
-    for (let i = 0; i < 9; i++) {
-      newArr.push(parseInt(board.charAt(i)) || 0);
-    }
-    return newArr;
-  },
-  boardArrayToString(board) {
-    return board.join('');
   },
 };
 

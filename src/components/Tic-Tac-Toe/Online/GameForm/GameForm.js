@@ -53,7 +53,7 @@ export default class JoinGameForm extends Component {
         <form className="JoinGameForm" onSubmit={this.handleJoinSubmit}>
           <div role="alert">{error && <p className="red">{error}</p>}</div>
           <div className="JoinGameFormInputs">
-            <label htmlFor="JoinGameForm__game_room">Insert Game Room</label>
+            <label htmlFor="JoinGameForm__game_room">Join Game Room</label>
             <Input
               name="game_room"
               type="text"

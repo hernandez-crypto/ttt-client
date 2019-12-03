@@ -3,22 +3,31 @@ import './Legend.css';
 
 export default function Legend(props) {
   let { playerOne, playerTwo, currentPlayer, roomName } = props;
-
   return (
     <>
       <h2 className="legend One">
+        Turn :{' '}
         {currentPlayer === playerOne.id ? playerOne.name : playerTwo.name}
       </h2>
       <div className="stats">
         <h2 className="legend Two">
-          {playerOne.name === '' ? 'P1' : playerOne.name} : {playerOne.score}
+          {playerOne.name} : {playerOne.score}
         </h2>
         <h2 className="legend Three">
-          {playerTwo.name === '' ? 'P2' : playerTwo.name} : {playerTwo.score}
+          {playerOne.score === playerTwo.score
+            ? '='
+            : playerOne.score > playerTwo.score
+            ? '>'
+            : '<'}
+        </h2>
+        <h2 className="legend Four">
+          {typeof playerTwo.name === 'object'
+            ? 'P2 Has Not Joined'
+            : `${playerTwo.name} : ${playerTwo.score}`}
         </h2>
       </div>
-      <h4 className="legend Four">Room : </h4>
-      {roomName}
+      <h2 className="legend Five">Round : 0 </h2>
+      <h3 className="legend Six">Room : {roomName} </h3>
     </>
   );
 }

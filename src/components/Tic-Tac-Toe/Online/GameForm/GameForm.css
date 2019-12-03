@@ -1,10 +1,11 @@
 .CreateNewGameRoom_div,
 .JoinGameForm {
-  border: 0.5px solid black;
-  border-radius: 5px;
   padding: 8px 10px;
   display: flex;
   flex-direction: column;
   max-width: 450px;
   margin: 10px auto;
+}
+.GameFormContainer {
+  font-family: 'Permanent Marker', cursive;
 }
