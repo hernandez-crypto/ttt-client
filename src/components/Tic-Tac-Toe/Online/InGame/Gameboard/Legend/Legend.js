@@ -3,10 +3,11 @@ import './Legend.css';
 
 export default function Legend(props) {
   let { playerOne, playerTwo, currentPlayer, roomName } = props;
+
   return (
     <>
       <h2 className="legend One">
-        {currentPlayer === 1 ? playerTwo.name : playerOne.name}
+        {currentPlayer === playerOne.id ? playerOne.name : playerTwo.name}
       </h2>
       <div className="stats">
         <h2 className="legend Two">

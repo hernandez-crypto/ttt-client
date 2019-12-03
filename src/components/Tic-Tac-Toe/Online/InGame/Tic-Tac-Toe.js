@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Board from './Gameboard/Board/Board';
 import Legend from './Gameboard/Legend/Legend';
-//import { Button } from '../../../Utils/Utils';
 import './Tic-Tac-Toe.css';
 import BoardApiService from '../../../../services/board-api-service';
 import TokenService from '../../../../services/token-service';
@@ -10,13 +9,11 @@ export default class TicTacToe extends Component {
   state = {
     playerOne: {
       id: '',
-      moves: [],
       score: 0,
       name: '',
     },
     playerTwo: {
       id: '',
-      moves: [],
       score: 0,
       name: '',
     },
@@ -26,7 +23,6 @@ export default class TicTacToe extends Component {
     },
     board: [0, 0, 0, 0, 0, 0, 0, 0, 0],
     currentPlayer: 1,
-    count: 0,
   };
 
   makeFetchCall = () => {
@@ -34,14 +30,14 @@ export default class TicTacToe extends Component {
       this.setState({
         board: res.board.split(''),
         playerOne: {
-          ...this.state.playerOne,
           name: res.player_started_usrname,
           id: res.player_started_id,
+          score: res.player_started_score,
         },
         playerTwo: {
-          ...this.state.playerTwo,
           name: res.player_joined_usrname,
           id: res.player_joined_id,
+          score: res.player_joined_score,
         },
         client_user: {
           ...this.state.client_user,
@@ -60,16 +56,16 @@ export default class TicTacToe extends Component {
 
   async componentDidMount() {
     try {
-      this.intervalId = setInterval(async () => {
+      this.updateGame = setInterval(async () => {
         this.makeFetchCall();
-      }, 5000);
+      }, 10000);
     } catch (e) {
       console.log(e);
     }
   }
 
   componentWillUnmount() {
-    clearInterval(this.intervalId);
+    clearInterval(this.updateGame);
   }
 
   setChoice = squareNumber => {
@@ -93,19 +89,10 @@ export default class TicTacToe extends Component {
       updatedBoard[squareNumber] = client_user.symbol;
       BoardApiService.patchNewMove(gameRoom, updatedBoard, otherUserId).then(
         res => {
-          res.winner
-            ? this.setState({
-                [res.winner]: {
-                  ...[res.winner],
-                  score: [res.winner.score] + 1, //should make a new call to restart the game
-                },
-                board: res.board,
-                currentPlayer: res.current_player,
-              })
-            : this.setState({
-                board: res.board,
-                currentPlayer: res.current_player,
-              });
+          this.setState({
+            board: res.board,
+            currentPlayer: res.current_player,
+          });
         }
       );
     } else this.setState({ error: 'Please Wait' });
