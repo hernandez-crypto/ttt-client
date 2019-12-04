@@ -27,6 +27,12 @@ export default class TicTacToe extends Component {
 
   makeFetchCall = () => {
     BoardApiService.getCurrentBoard(this.props.roomName).then(res => {
+      if (
+        (res.board = '000000000') &&
+        this.state.board.find(item => item !== 0)
+      ) {
+        console.log('Someone Won');
+      }
       this.setState({
         board: res.board.split(''),
         playerOne: {

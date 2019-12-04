@@ -15,7 +15,7 @@ export default class Board extends Component {
 
     return (
       <>
-        <div className='container'>{boxes}</div>
+        <div className="container">{boxes}</div>
       </>
     );
   }

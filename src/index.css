@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Permanent+Marker|Playfair+Display&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker|Varela&display=swap');
 
 * {
   box-sizing: border-box;
@@ -15,10 +15,12 @@ body {
 h1,
 h2,
 h3,
-h4,
-h5,
-h6 {
+h4 {
   font-weight: 100;
+}
+h3,
+h4 {
+  font-family: 'Varela', sans-serif;
 }
 a {
   text-decoration: none;

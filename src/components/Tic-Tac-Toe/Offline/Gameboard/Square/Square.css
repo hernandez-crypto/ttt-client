@@ -11,6 +11,9 @@
   align-items: center;
   cursor: pointer;
 }
+div#0.box {
+  background-color: red;
+}
 .oneWinner {
   background-color: red;
 }

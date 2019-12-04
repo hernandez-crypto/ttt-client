@@ -15,7 +15,7 @@ export default class Square extends Component {
         : this.props.currentValue;
     return (
       <div id={`${id}`} className="box" onClick={this.handleClick}>
-        <h3>{value}</h3>
+        {value}
       </div>
     );
   }

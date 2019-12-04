@@ -26,7 +26,7 @@ export default function Legend(props) {
             : `${playerTwo.name} : ${playerTwo.score}`}
         </h2>
       </div>
-      <h2 className="legend Five">Round : 0 </h2>
+      {/* <h2 className="legend Five">Round : 0 </h2> */}
       <h3 className="legend Six">Room : {roomName} </h3>
     </>
   );
