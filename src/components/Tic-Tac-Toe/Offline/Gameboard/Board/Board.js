@@ -7,8 +7,8 @@ export default class Board extends Component {
     let boxes = this.props.board.map((square, i) => (
       <Square
         setChoice={this.props.setChoice}
-        id={`${i}`}
-        key={`${i}`}
+        id={i}
+        key={i}
         currentValue={square}
       />
     ));

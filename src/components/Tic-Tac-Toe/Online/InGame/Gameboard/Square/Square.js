@@ -15,9 +15,11 @@ export default class Square extends Component {
         ? ''
         : this.props.currentValue;
     return (
-      <div id={`${id}`} className="box" onClick={this.handleClick}>
-        {value}
-      </div>
+      <>
+        <div id={id} className="box" onClick={this.handleClick}>
+          <span>{value}</span>
+        </div>
+      </>
     );
   }
 }

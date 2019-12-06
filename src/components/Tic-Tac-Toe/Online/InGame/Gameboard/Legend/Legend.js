@@ -2,7 +2,7 @@ import React from 'react';
 import './Legend.css';
 
 export default function Legend(props) {
-  let { playerOne, playerTwo, currentPlayer, roomName } = props;
+  let { playerOne, playerTwo, currentPlayer, roomName, round } = props;
   return (
     <>
       <h2 className="legend One">
@@ -26,7 +26,7 @@ export default function Legend(props) {
             : `${playerTwo.name} : ${playerTwo.score}`}
         </h2>
       </div>
-      {/* <h2 className="legend Five">Round : 0 </h2> */}
+      <h2 className="legend Five">Round : {round} </h2>
       <h3 className="legend Six">Room : {roomName} </h3>
     </>
   );

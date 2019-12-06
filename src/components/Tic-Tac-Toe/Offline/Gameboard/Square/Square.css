@@ -1,23 +1,37 @@
-.box {
+div.box {
   text-align: center;
-  font-size: 30px;
-  font-family: 'Comic Sans' cursive;
+  height: 100px;
+  width: 100px;
   display: flex;
-  border-collapse: collapse;
-  height: 33.3%;
-  width: 33.3%;
+  font-size: 45px;
   border: 1px solid black;
   justify-content: center;
   align-items: center;
   cursor: pointer;
 }
-div#0.box {
-  background-color: red;
+div[id='0'].box,
+div[id='1'].box,
+div[id='2'].box {
+  border-top: none;
+}
+div[id='2'].box,
+div[id='5'].box,
+div[id='8'].box {
+  border-right: none;
+}
+div[id='6'].box,
+div[id='7'].box,
+div[id='8'].box {
+  border-bottom: none;
+}
+div[id='0'].box,
+div[id='3'].box,
+div[id='6'].box {
+  border-left: none;
 }
 .oneWinner {
-  background-color: red;
+  color: red;
 }
-
 .twoWinner {
-  background-color: blue;
+  color: blue;
 }

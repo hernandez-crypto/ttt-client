@@ -22,6 +22,7 @@ export default class TicTacToe extends Component {
       symbol: '',
     },
     board: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    round: 0,
     currentPlayer: 1,
   };
 
@@ -31,7 +32,10 @@ export default class TicTacToe extends Component {
         (res.board = '000000000') &&
         this.state.board.find(item => item !== 0)
       ) {
-        console.log('Someone Won');
+        this.setState({
+          round: this.state.round + 1,
+        });
+        return;
       }
       this.setState({
         board: res.board.split(''),
@@ -105,7 +109,14 @@ export default class TicTacToe extends Component {
   };
 
   render() {
-    let { playerOne, playerTwo, currentPlayer, board, error } = this.state;
+    let {
+      playerOne,
+      playerTwo,
+      currentPlayer,
+      board,
+      error,
+      round,
+    } = this.state;
     return (
       <div className="tic-tac-toe-board">
         <Board
@@ -119,6 +130,7 @@ export default class TicTacToe extends Component {
           playerOne={playerOne}
           playerTwo={playerTwo}
           roomName={this.props.roomName}
+          round={round}
         />
       </div>
     );
