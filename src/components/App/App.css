@@ -13,3 +13,8 @@
 .App__main {
   margin-top: 20px;
 }
+.App__footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}

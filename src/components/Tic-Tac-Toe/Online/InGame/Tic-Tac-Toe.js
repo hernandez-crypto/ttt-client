@@ -26,19 +26,10 @@ export default class TicTacToe extends Component {
     currentPlayer: 1,
   };
 
-  makeFetchCall = () => {
+  makeFetchCallAndUpdate = () => {
     BoardApiService.getCurrentBoard(this.props.roomName).then(res => {
-      if (
-        (res.board = '000000000') &&
-        this.state.board.find(item => item !== 0)
-      ) {
-        this.setState({
-          round: this.state.round + 1,
-        });
-        return;
-      }
       this.setState({
-        board: res.board.split(''),
+        board: res.board,
         playerOne: {
           name: res.player_started_usrname,
           id: res.player_started_id,
@@ -54,21 +45,25 @@ export default class TicTacToe extends Component {
           symbol:
             this.state.client_user.id === res.player_started_id ? 'X' : 'O',
         },
+        roundStarted: false,
         currentPlayer: res.current_player,
-        error: '',
+        round: res.round,
       });
     });
   };
 
   componentWillMount() {
-    this.makeFetchCall();
+    this.makeFetchCallAndUpdate();
   }
 
   async componentDidMount() {
     try {
       this.updateGame = setInterval(async () => {
-        this.makeFetchCall();
-      }, 10000);
+        this.makeFetchCallAndUpdate();
+        this.setState({
+          error: '',
+        });
+      }, 5000);
     } catch (e) {
       console.log(e);
     }
@@ -79,7 +74,7 @@ export default class TicTacToe extends Component {
   }
 
   setChoice = squareNumber => {
-    this.makeFetchCall();
+    this.makeFetchCallAndUpdate();
     let {
       currentPlayer,
       client_user,
@@ -94,18 +89,18 @@ export default class TicTacToe extends Component {
     ) {
       let otherUserId =
         client_user.id === playerOne.id ? playerTwo.id : playerOne.id;
-      const gameRoom = this.props.roomName;
-      let updatedBoard = [...board];
-      updatedBoard[squareNumber] = client_user.symbol;
-      BoardApiService.patchNewMove(gameRoom, updatedBoard, otherUserId).then(
-        res => {
-          this.setState({
-            board: res.board,
-            currentPlayer: res.current_player,
-          });
-        }
-      );
-    } else this.setState({ error: 'Please Wait' });
+      board[squareNumber] = client_user.symbol;
+      BoardApiService.patchNewMove(
+        this.props.roomName,
+        board,
+        otherUserId
+      ).then(res => {
+        this.setState({
+          board: res.board,
+          currentPlayer: res.current_player,
+        });
+      });
+    } else this.setState({ error: 'Slow Down Buster' });
   };
 
   render() {
@@ -119,12 +114,12 @@ export default class TicTacToe extends Component {
     } = this.state;
     return (
       <div className="tic-tac-toe-board">
+        <div role="alert">{error && <p className="red">{error}</p>}</div>
         <Board
           setChoice={this.setChoice}
           currentPlayer={currentPlayer}
           board={board}
         />
-        <div role="alert">{error && <p className="red">{error}</p>}</div>
         <Legend
           currentPlayer={currentPlayer}
           playerOne={playerOne}

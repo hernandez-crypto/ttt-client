@@ -1,3 +1,6 @@
 .tic-tac-toe-board {
   margin: 5vh auto;
 }
+div[role='alert'] {
+  text-align: right;
+}

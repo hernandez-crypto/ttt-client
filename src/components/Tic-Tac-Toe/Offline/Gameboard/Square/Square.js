@@ -16,7 +16,7 @@ export default class Square extends Component {
     return (
       <>
         <div id={id} className="box" onClick={this.handleClick}>
-          <span>{value}</span>
+          {value}
         </div>
       </>
     );

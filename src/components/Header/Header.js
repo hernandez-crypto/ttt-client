@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import TokenService from '../../services/token-service';
+import { Button } from '../Utils/Utils';
 import './Header.css';
 
 export default class Header extends Component {
@@ -12,11 +13,11 @@ export default class Header extends Component {
     return (
       <>
         <h2>{TokenService.getAuthName()}</h2>
-        <div className="Header__logged-in">
+        <Button className="Header__logged-in">
           <Link onClick={this.handleLogoutClick} to="/">
             Logout
           </Link>
-        </div>
+        </Button>
       </>
     );
   }
@@ -40,6 +41,7 @@ export default class Header extends Component {
           {TokenService.hasAuthToken()
             ? this.renderLogoutLink()
             : this.renderLoginLink()}
+          {/* <Button>Darkmode</Button> */}
         </nav>
       </>
     );
