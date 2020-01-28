@@ -11,46 +11,46 @@ export default class TicTacToe extends Component {
       symbol: 'X',
       moves: [],
       computer: 0,
-      score: 0,
+      score: 0
     },
     playerTwo: {
       symbol: 'O',
       moves: [],
       computer: 3,
-      score: 0,
+      score: 0
     },
     board: [0, 1, 2, 3, 4, 5, 6, 7, 8],
     currentPlayer: 1,
     round: 0,
-    count: 0,
+    count: 0
   };
 
   componentDidMount() {
-    this.computer = new ComputerPlayer(this.setChoice, -1);
+    this.computer = new ComputerPlayer(this.setChoice);
   }
 
-  handleEndGame = winner => {
+  handleEndGame = (winner) => {
     let { playerOne, playerTwo } = this.state;
     if (winner === 1) {
       this.setState({
         playerOne: {
           ...playerOne,
-          score: playerOne.score + 1,
+          score: playerOne.score + 1
         },
-        count: -1,
+        count: -1
       });
     }
     if (winner === 2) {
       this.setState({
         playerTwo: {
           ...playerTwo,
-          score: playerTwo.score + 1,
+          score: playerTwo.score + 1
         },
-        count: -1,
+        count: -1
       });
     } else {
       this.setState({
-        count: -1,
+        count: -1
       });
     }
   };
@@ -60,18 +60,18 @@ export default class TicTacToe extends Component {
     this.setState({
       playerOne: {
         ...playerOne,
-        moves: [],
+        moves: []
       },
       playerTwo: {
         ...playerTwo,
-        moves: [],
+        moves: []
       },
       board: [0, 1, 2, 3, 4, 5, 6, 7, 8],
       round: round + 1,
-      count: 0,
+      count: 0
     });
     let clearBoxes = Object.values(document.getElementsByClassName('box'));
-    clearBoxes.forEach(box => {
+    clearBoxes.forEach((box) => {
       box.classList.remove('oneWinner');
       box.classList.remove('twoWinner');
     });
@@ -81,9 +81,9 @@ export default class TicTacToe extends Component {
     let threeRow = [
       document.getElementById(a),
       document.getElementById(b),
-      document.getElementById(c),
+      document.getElementById(c)
     ];
-    threeRow.forEach(box => box.classList.add(winner));
+    threeRow.forEach((box) => box.classList.add(winner));
   };
 
   determineWinner = (currentPlayer, squareNumber) => {
@@ -97,9 +97,9 @@ export default class TicTacToe extends Component {
       [1, 4, 7],
       [2, 5, 8],
       [0, 4, 8],
-      [2, 4, 6],
+      [2, 4, 6]
     ];
-    winCombos.forEach(item => {
+    winCombos.forEach((item) => {
       let [a, b, c] = item;
       let one = [...playerOne.moves, parseInt(squareNumber)];
       let two = [...playerTwo.moves, parseInt(squareNumber)];
@@ -120,7 +120,7 @@ export default class TicTacToe extends Component {
     });
   };
 
-  setChoice = squareNumber => {
+  setChoice = (squareNumber) => {
     let { playerOne, playerTwo, currentPlayer, count, board } = this.state;
     if (count === -1) {
       this.restartGame();
@@ -138,10 +138,10 @@ export default class TicTacToe extends Component {
         board,
         playerOne: {
           ...playerOne,
-          moves: [...playerOne.moves, parseInt(squareNumber)],
+          moves: [...playerOne.moves, parseInt(squareNumber)]
         },
         currentPlayer: 2,
-        count: count + 1,
+        count: count + 1
       });
     }
     if (currentPlayer === 2) {
@@ -149,10 +149,10 @@ export default class TicTacToe extends Component {
         board,
         playerTwo: {
           ...playerTwo,
-          moves: [...playerTwo.moves, parseInt(squareNumber)],
+          moves: [...playerTwo.moves, parseInt(squareNumber)]
         },
         currentPlayer: 1,
-        count: count + 1,
+        count: count + 1
       });
     }
     this.determineWinner(currentPlayer, squareNumber);
@@ -162,20 +162,25 @@ export default class TicTacToe extends Component {
     let { currentPlayer, playerOne, playerTwo, board } = this.state;
     let player = currentPlayer === 1 ? playerOne : playerTwo;
     if (player.computer > 0) {
-      this.computer.makeMove(
-        player.computer,
-        board,
-        currentPlayer === 1 ? true : false
-      );
+      this.computer.makeMove(player.computer, board);
     }
   }
 
-  selectBotDifficulty = ev => {
+  selectBotDifficulty = (ev) => {
     this.setState({
       playerTwo: {
         ...this.state.playerTwo,
         computer: ev.target.value,
+        score: 0
       },
+      playerOne: {
+        ...this.state.playerOne,
+        score: 0
+      },
+      count: 0,
+      round: 0,
+      board: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+      currentPlayer: 1
     });
   };
 

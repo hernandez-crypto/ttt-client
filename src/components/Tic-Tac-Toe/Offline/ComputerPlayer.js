@@ -9,26 +9,19 @@ function checkWinner(board) {
     [0, 4, 8],
     [6, 4, 2]
   ];
+
   for (let i = 0; i < winCombos.length; i++) {
     let [a, b, c] = winCombos[i];
     if (board[a] === board[b] && board[b] === board[c]) {
       return board[a];
     }
   }
-  let isFull = false;
-  for (let i = 0; i < board.length; i++) {
-    if (typeof board[i] === 'string') isFull = true;
-    if (typeof board[i] === 'number') isFull = false;
-  }
-  if (isFull) return 'tie';
-  else return null;
-}
 
-let scores = {
-  O: 1,
-  X: -1,
-  tie: 0
-};
+  for (let i = 0; i < board.length; i++) {
+    if (typeof board[i] === 'number') return null;
+  }
+  return 'tie';
+}
 
 export default class ComputerPlayer {
   constructor(setChoice) {
@@ -60,15 +53,23 @@ export default class ComputerPlayer {
     this.setChoice(choice);
   };
 
-  mediumMode = () => {};
+  mediumMode = (board) => {
+    let nums = 0;
+    board.forEach((square, index) => {
+      if (typeof square === 'number') nums += 1;
+    });
+    if (nums % 2 === 0) this.hardMode(board);
+    this.easyMode(board);
+  };
 
   hardMode = (board) => {
     let bestScore = -Infinity;
     let move;
     board.forEach((square, index) => {
       if (typeof square === 'number') {
+        /// <== checks if a spot is open
         board[index] = 'O';
-        let score = this.minimax(board, false, 0);
+        let score = this.miniMax(board, false, 0, false);
         board[index] = index;
         if (score > bestScore) {
           bestScore = score;
@@ -82,17 +83,19 @@ export default class ComputerPlayer {
   miniMax = (board, maximizing, depth) => {
     let result = checkWinner(board);
     if (result !== null) {
-      let score = scores[result];
-      return score;
+      if (result === 'X') return -10 + depth;
+      else if (result === 'O') return 10 - depth;
+      else if (result === 'tie') return 0;
     }
+
     if (maximizing) {
       let bestScore = -Infinity;
       board.forEach((square, index) => {
         if (typeof square === 'number') {
           board[index] = 'O';
-          let score = this.minimax(board, false, depth + 1);
+          let score = this.miniMax(board, false, depth + 1);
           board[index] = index;
-          bestScore = Math.max(bestScore, score);
+          bestScore = Math.max(score, bestScore);
         }
       });
       return bestScore;
@@ -102,12 +105,14 @@ export default class ComputerPlayer {
       board.forEach((square, index) => {
         if (typeof square === 'number') {
           board[index] = 'X';
-          let score = this.minimax(board, true, depth + 1);
+          let score = this.miniMax(board, true, depth + 1);
           board[index] = index;
-          bestScore = Math.min(bestScore, score);
+          bestScore = Math.min(score, bestScore);
         }
       });
       return bestScore;
     }
   };
 }
+/// Michael Kirsch helped me develop this algorithm
+/// He is the algorithm wizard, here's his linkedIn : https://www.linkedin.com/in/michael-kirsch-40a9a2194/
