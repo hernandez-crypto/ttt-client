@@ -42,9 +42,9 @@ class App extends Component {
             <Route component={NotFoundPage} />
           </Switch>
         </main>
-        <footer className="App__footer">
+        {/* <footer className="App__footer">
           <Footer />
-        </footer>
+        </footer> */}
       </div>
     );
   }
