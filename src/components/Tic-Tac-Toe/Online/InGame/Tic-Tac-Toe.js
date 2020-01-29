@@ -10,44 +10,44 @@ export default class TicTacToe extends Component {
     playerOne: {
       id: '',
       score: 0,
-      name: '',
+      name: ''
     },
     playerTwo: {
       id: '',
       score: 0,
-      name: '',
+      name: ''
     },
     client_user: {
       id: parseInt(TokenService.getAuthId()),
-      symbol: '',
+      symbol: ''
     },
     board: [0, 0, 0, 0, 0, 0, 0, 0, 0],
     round: 0,
-    currentPlayer: 1,
+    currentPlayer: 1
   };
 
   makeFetchCallAndUpdate = () => {
-    BoardApiService.getCurrentBoard(this.props.roomName).then(res => {
+    BoardApiService.getCurrentBoard(this.props.roomName).then((res) => {
+      console.log(res);
       this.setState({
         board: res.board,
         playerOne: {
-          name: res.player_started_usrname,
-          id: res.player_started_id,
-          score: res.player_started_score,
+          name: res.player_one_usrname,
+          id: res.player_one_id,
+          score: res.player_one_score
         },
         playerTwo: {
-          name: res.player_joined_usrname,
-          id: res.player_joined_id,
-          score: res.player_joined_score,
+          name: res.player_two_usrname,
+          id: res.player_two_id,
+          score: res.player_two_score
         },
         client_user: {
           ...this.state.client_user,
-          symbol:
-            this.state.client_user.id === res.player_started_id ? 'X' : 'O',
+          symbol: this.state.client_user.id === res.player_one_id ? 'X' : 'O'
         },
         roundStarted: false,
         currentPlayer: res.current_player,
-        round: res.round,
+        round: res.round
       });
     });
   };
@@ -61,7 +61,7 @@ export default class TicTacToe extends Component {
       this.updateGame = setInterval(async () => {
         this.makeFetchCallAndUpdate();
         this.setState({
-          error: '',
+          error: ''
         });
       }, 5000);
     } catch (e) {
@@ -73,14 +73,15 @@ export default class TicTacToe extends Component {
     clearInterval(this.updateGame);
   }
 
-  setChoice = squareNumber => {
+  setChoice = (squareNumber) => {
     this.makeFetchCallAndUpdate();
+    if (this.state.playerTwo.name === 'undefined') return;
     let {
       currentPlayer,
       client_user,
       board,
       playerOne,
-      playerTwo,
+      playerTwo
     } = this.state;
     if (
       currentPlayer === client_user.id &&
@@ -94,10 +95,10 @@ export default class TicTacToe extends Component {
         this.props.roomName,
         board,
         otherUserId
-      ).then(res => {
+      ).then((res) => {
         this.setState({
           board: res.board,
-          currentPlayer: res.current_player,
+          currentPlayer: res.current_player
         });
       });
     } else this.setState({ error: 'Slow Down Buster' });
@@ -110,7 +111,7 @@ export default class TicTacToe extends Component {
       currentPlayer,
       board,
       error,
-      round,
+      round
     } = this.state;
     return (
       <div className="tic-tac-toe-board">

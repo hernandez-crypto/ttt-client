@@ -5,26 +5,26 @@ import './RegistrationForm.css';
 
 export default class RegistrationForm extends Component {
   static defaultProps = {
-    onRegistrationSuccess: () => {},
+    onRegistrationSuccess: () => {}
   };
 
   state = { error: null };
 
-  handleSubmit = ev => {
+  handleSubmit = (ev) => {
     ev.preventDefault();
     const { user_name, password } = ev.target;
 
     this.setState({ error: null });
     AuthApiService.postUser({
       user_name: user_name.value,
-      password: password.value,
+      password: password.value
     })
-      .then(user => {
+      .then((user) => {
         user_name.value = '';
         password.value = '';
         this.props.onRegistrationSuccess();
       })
-      .catch(res => {
+      .catch((res) => {
         this.setState({ error: res.error });
       });
   };
@@ -40,10 +40,10 @@ export default class RegistrationForm extends Component {
           </label>
           <Input
             name="user_name"
+            autoComplete="username"
             type="text"
             required
-            id="RegistrationForm__user_name"
-          ></Input>
+            id="RegistrationForm__user_name"></Input>
         </div>
         <div className="password">
           <label htmlFor="RegistrationForm__password">
@@ -52,9 +52,9 @@ export default class RegistrationForm extends Component {
           <Input
             name="password"
             type="password"
+            autoComplete="current-password"
             required
-            id="RegistrationForm__password"
-          ></Input>
+            id="RegistrationForm__password"></Input>
         </div>
         <Button type="submit">Register</Button>
       </form>

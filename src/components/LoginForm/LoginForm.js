@@ -6,21 +6,21 @@ import './LoginForm.css';
 
 export default class LoginForm extends Component {
   static defaultProps = {
-    onLoginSuccess: () => {},
+    onLoginSuccess: () => {}
   };
 
   state = { error: null };
 
-  handleSubmitJwtAuth = ev => {
+  handleSubmitJwtAuth = (ev) => {
     ev.preventDefault();
     this.setState({ error: null });
     const { user_name, password } = ev.target;
 
     AuthApiService.postLogin({
       user_name: user_name.value,
-      password: password.value,
+      password: password.value
     })
-      .then(res => {
+      .then((res) => {
         user_name.value = '';
         password.value = '';
         TokenService.saveAuthToken(res.authToken);
@@ -28,7 +28,7 @@ export default class LoginForm extends Component {
         TokenService.saveAuthName(res.user_name);
         this.props.onLoginSuccess();
       })
-      .catch(res => {
+      .catch((res) => {
         this.setState({ error: res.error });
       });
   };
@@ -40,16 +40,20 @@ export default class LoginForm extends Component {
         <div role="alert">{error && <p className="red">{error}</p>}</div>
         <div className="user_name">
           <label htmlFor="LoginForm__user_name">User name</label>
-          <Input required name="user_name" id="LoginForm__user_name"></Input>
+          <Input
+            required
+            autoComplete="username"
+            name="user_name"
+            id="LoginForm__user_name"></Input>
         </div>
         <div className="password">
           <label htmlFor="LoginForm__password">Password</label>
           <Input
             required
+            autoComplete="current-password"
             name="password"
             type="password"
-            id="LoginForm__password"
-          ></Input>
+            id="LoginForm__password"></Input>
         </div>
         <Button type="submit">Login</Button>
       </form>
