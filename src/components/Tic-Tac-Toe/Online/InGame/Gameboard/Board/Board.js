@@ -4,9 +4,10 @@ import './Board.css';
 
 export default class Board extends Component {
   render() {
-    let boxes = this.props.board.map((square, i) => (
+    let { board, setChoice } = this.props;
+    let boxes = board.map((square, i) => (
       <Square
-        setChoice={this.props.setChoice}
+        setChoice={setChoice}
         id={`${i}`}
         key={`${i}`}
         currentValue={square}

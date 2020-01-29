@@ -31,13 +31,15 @@ export default class TicTacToe extends Component {
 
   handleEndGame = (winner) => {
     let { playerOne, playerTwo } = this.state;
+    this.setState({
+      count: -1
+    });
     if (winner === 1) {
       this.setState({
         playerOne: {
           ...playerOne,
           score: playerOne.score + 1
-        },
-        count: -1
+        }
       });
     }
     if (winner === 2) {
@@ -45,12 +47,7 @@ export default class TicTacToe extends Component {
         playerTwo: {
           ...playerTwo,
           score: playerTwo.score + 1
-        },
-        count: -1
-      });
-    } else {
-      this.setState({
-        count: -1
+        }
       });
     }
   };
@@ -114,7 +111,7 @@ export default class TicTacToe extends Component {
           return handleEndGame(currentPlayer);
         }
       }
-      if (count === 8) {
+      if (count === 8 || count === 9) {
         handleEndGame();
       }
     });
@@ -124,13 +121,9 @@ export default class TicTacToe extends Component {
     let { playerOne, playerTwo, currentPlayer, count, board } = this.state;
     if (count === -1) {
       this.restartGame();
-    }
-    if (
-      board[squareNumber] === playerOne.symbol ||
-      board[squareNumber] === playerTwo.symbol ||
-      count < 0
-    )
       return;
+    }
+    if (typeof board[squareNumber] !== 'number' || count < 0) return;
     board[squareNumber] =
       currentPlayer === 1 ? playerOne.symbol : playerTwo.symbol;
     if (currentPlayer === 1) {
@@ -161,8 +154,10 @@ export default class TicTacToe extends Component {
   componentDidUpdate() {
     let { currentPlayer, playerOne, playerTwo, board } = this.state;
     let player = currentPlayer === 1 ? playerOne : playerTwo;
-    if (player.computer > 0) {
-      this.computer.makeMove(player.computer, board);
+    if (player.computer > 0 && currentPlayer === 2) {
+      setTimeout(() => {
+        this.computer.makeMove(player.computer, board);
+      }, 1500);
     }
   }
 
@@ -171,16 +166,17 @@ export default class TicTacToe extends Component {
       playerTwo: {
         ...this.state.playerTwo,
         computer: ev.target.value,
+        moves: [],
         score: 0
       },
       playerOne: {
         ...this.state.playerOne,
+        moves: [],
         score: 0
       },
       count: 0,
       round: 0,
-      board: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-      currentPlayer: 1
+      board: [0, 1, 2, 3, 4, 5, 6, 7, 8]
     });
   };
 
