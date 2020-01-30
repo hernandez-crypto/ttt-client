@@ -1,4 +1,15 @@
 div.footer__content {
-  text-align: center;
-  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+div.footer__content p {
+  order: 1;
+  justify-self: center;
+}
+div.footer__content button {
+  height: 30px;
+  align-self: center;
+  border-radius: 5px;
+  order: 2;
 }

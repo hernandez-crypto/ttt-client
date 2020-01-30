@@ -10,42 +10,56 @@ import NotFoundPage from '../../routes/NotFoundPage/NotFoundPage';
 import TTTOffline from '../../routes/TTTOffline/TTTOffline';
 import TTTOnlineForm from '../../routes/TTTOnline/TTTOnlineForm';
 import TTTOnlineGame from '../../routes/TTTOnline/TTTOnlineGame';
+import { ThemeProvider } from 'styled-components';
+import { lightTheme, darkTheme } from '../Theme/theme';
+import { GlobalStyles } from '../Theme/global';
 import './App.css';
 
 class App extends Component {
-  state = { hasError: false };
+  state = { theme: 'light', hasError: false };
 
   static getDerivedStateFromError(error) {
     console.error(error);
     return { hasError: true };
   }
 
+  toggleTheme = () => {
+    this.setState((state) => ({
+      theme: state.theme === 'light' ? 'dark' : 'light'
+    }));
+  };
+
   render() {
+    let { theme, hasError } = this.state;
     return (
-      <div className="App">
-        <header className="App__header">
-          <Header />
-        </header>
-        <main className="App__main">
-          {this.state.hasError && (
-            <p className="red">There was an error! Oh no!</p>
-          )}
-          <Switch>
-            <PublicOnlyRoute path={'/login'} component={LoginPage} />
-            <PublicOnlyRoute path={'/register'} component={RegistrationPage} />
-            <Route exact path={'/'} component={TTTOffline} />
-            <PrivateRoute exact path={'/online'} component={TTTOnlineForm} />
-            <PrivateRoute
-              path={'/online/:room_name'}
-              component={TTTOnlineGame}
-            />
-            <Route component={NotFoundPage} />
-          </Switch>
-        </main>
-        <footer className="App__footer">
-          <Footer />
-        </footer>
-      </div>
+      <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+        <GlobalStyles />
+        <div className="App">
+          <header className="App__header">
+            <Header />
+          </header>
+          <main className="App__main">
+            {hasError && <p className="red">There was an error! Oh no!</p>}
+            <Switch>
+              <PublicOnlyRoute path={'/login'} component={LoginPage} />
+              <PublicOnlyRoute
+                path={'/register'}
+                component={RegistrationPage}
+              />
+              <Route exact path={'/'} component={TTTOffline} />
+              <PrivateRoute exact path={'/online'} component={TTTOnlineForm} />
+              <PrivateRoute
+                path={'/online/:room_name'}
+                component={TTTOnlineGame}
+              />
+              <Route component={NotFoundPage} />
+            </Switch>
+          </main>
+          <footer className="App__footer">
+            <Footer toggleTheme={this.toggleTheme} />
+          </footer>
+        </div>
+      </ThemeProvider>
     );
   }
 }

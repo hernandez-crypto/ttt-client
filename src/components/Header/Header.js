@@ -41,7 +41,6 @@ export default class Header extends Component {
           {TokenService.hasAuthToken()
             ? this.renderLogoutLink()
             : this.renderLoginLink()}
-          {/* <Button>Darkmode</Button> */}
         </nav>
       </>
     );
