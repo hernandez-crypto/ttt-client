@@ -13,11 +13,9 @@ export default class Header extends Component {
     return (
       <>
         <h2>{TokenService.getAuthName()}</h2>
-        <Button className="Header__logged-in">
-          <Link onClick={this.handleLogoutClick} to="/">
-            Logout
-          </Link>
-        </Button>
+        <Link onClick={this.handleLogoutClick} to="/">
+          <Button className="Header__logged-in">Logout</Button>
+        </Link>
       </>
     );
   }
