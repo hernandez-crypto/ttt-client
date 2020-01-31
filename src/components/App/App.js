@@ -17,7 +17,7 @@ import { GlobalStyles } from '../Theme/global';
 import './App.css';
 
 class App extends Component {
-  state = { theme: 'light', hasError: false };
+  state = { theme: 'dark', hasError: false };
 
   static getDerivedStateFromError(error) {
     console.error(error);

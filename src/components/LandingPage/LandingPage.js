@@ -23,6 +23,10 @@ export default class LandingPage extends Component {
           continue playing until one gives up !
         </p>
         <p>
+          A sample account is also available. Username: 'demo' Password:
+          'Password1!'
+        </p>
+        <p>
           There is also a light / dark mode feature. Simply press the 'Toggle
           Theme' button.
         </p>
