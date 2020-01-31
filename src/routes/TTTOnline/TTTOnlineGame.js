@@ -8,7 +8,7 @@ export default class TTTOnlineGame extends Component {
     return (
       <div>
         <Section className="gameRoom">
-          <Link to="/">
+          <Link to="/offline">
             <h3>Play Offline</h3>
           </Link>
           <TicTacToeGame roomName={this.props.match.params.room_name} />

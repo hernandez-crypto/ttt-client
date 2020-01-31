@@ -10,6 +10,7 @@ import NotFoundPage from '../../routes/NotFoundPage/NotFoundPage';
 import TTTOffline from '../../routes/TTTOffline/TTTOffline';
 import TTTOnlineForm from '../../routes/TTTOnline/TTTOnlineForm';
 import TTTOnlineGame from '../../routes/TTTOnline/TTTOnlineGame';
+import LandingPage from '../LandingPage/LandingPage';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from '../Theme/theme';
 import { GlobalStyles } from '../Theme/global';
@@ -41,12 +42,13 @@ class App extends Component {
           <main className="App__main">
             {hasError && <p className="red">There was an error! Oh no!</p>}
             <Switch>
+              <PublicOnlyRoute exact path={'/'} component={LandingPage} />
               <PublicOnlyRoute path={'/login'} component={LoginPage} />
               <PublicOnlyRoute
                 path={'/register'}
                 component={RegistrationPage}
               />
-              <Route exact path={'/'} component={TTTOffline} />
+              <Route exact path={'/offline'} component={TTTOffline} />
               <PrivateRoute exact path={'/online'} component={TTTOnlineForm} />
               <PrivateRoute
                 path={'/online/:room_name'}

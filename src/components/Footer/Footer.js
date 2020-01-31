@@ -7,7 +7,7 @@ export default class Footer extends Component {
       <div className="footer__content">
         <p>Julio C. Hernandez 2019</p>
         <button className="toggleTheme" onClick={this.props.toggleTheme}>
-          Toggle theme
+          Toggle Theme
         </button>
       </div>
     );

@@ -6,10 +6,10 @@ import { Section } from '../../components/Utils/Utils';
 export default class TTTOnlineForm extends Component {
   static defaultProps = {
     history: {
-      push: () => {},
-    },
+      push: () => {}
+    }
   };
-  onJoinSuccess = gameRoom => {
+  onJoinSuccess = (gameRoom) => {
     const { history } = this.props;
     history.push(`/online/${gameRoom}`);
   };
@@ -17,7 +17,7 @@ export default class TTTOnlineForm extends Component {
     return (
       <div>
         <Section className="TTTPage">
-          <Link to="/">
+          <Link to="/offline">
             <h3>Play Offline</h3>
           </Link>
           <TicTacToeForm onJoinSuccess={this.onJoinSuccess} />

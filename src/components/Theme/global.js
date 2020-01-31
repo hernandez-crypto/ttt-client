@@ -16,7 +16,7 @@ export const GlobalStyles = createGlobalStyle`
   button {
     display: block;
   }
-  a {
+  a, p {
     color: ${({ theme }) => theme.text};
   }
 `;
