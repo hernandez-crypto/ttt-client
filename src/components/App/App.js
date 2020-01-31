@@ -42,7 +42,7 @@ class App extends Component {
           <main className="App__main">
             {hasError && <p className="red">There was an error! Oh no!</p>}
             <Switch>
-              <PublicOnlyRoute exact path={'/'} component={LandingPage} />
+              <Route exact path={'/'} component={LandingPage} />
               <PublicOnlyRoute path={'/login'} component={LoginPage} />
               <PublicOnlyRoute
                 path={'/register'}
