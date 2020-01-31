@@ -56,7 +56,7 @@ export default class ComputerPlayer {
 
   mediumMode = (board) => {
     let nums = 0;
-    board.forEach((square, index) => {
+    board.forEach((square) => {
       if (typeof square === 'number') nums += 1;
     });
     if (nums % 2 === 0) this.hardMode(board);
@@ -122,5 +122,3 @@ export default class ComputerPlayer {
     }
   };
 }
-/// Michael Kirsch helped me develop this algorithm
-/// He is the algorithm wizard, here's his linkedIn : https://www.linkedin.com/in/michael-kirsch-40a9a2194/

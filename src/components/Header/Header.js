@@ -35,10 +35,11 @@ export default class Header extends Component {
           <h1>
             <Link to="/">Tic-Tac-Toe</Link>
           </h1>
-          <span className="Header__tagline--wide"></span>
-          {TokenService.hasAuthToken()
-            ? this.renderLogoutLink()
-            : this.renderLoginLink()}
+          <span className="Header__tagline--wide">
+            {TokenService.hasAuthToken()
+              ? this.renderLogoutLink()
+              : this.renderLoginLink()}
+          </span>
         </nav>
       </>
     );

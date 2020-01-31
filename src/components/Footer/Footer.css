@@ -4,6 +4,7 @@ div.footer__content {
 }
 
 div.footer__content p {
+  margin-left: 8px;
   order: 1;
   justify-self: center;
 }
@@ -12,4 +13,5 @@ div.footer__content button {
   align-self: center;
   border-radius: 5px;
   order: 2;
+  margin-right: 8px;
 }
