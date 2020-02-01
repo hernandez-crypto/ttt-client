@@ -16,10 +16,13 @@ import { lightTheme, darkTheme } from '../Theme/theme';
 import { GlobalStyles } from '../Theme/global';
 import { PacmanLoader } from 'react-spinners';
 import { css } from '@emotion/core';
+import UserContext from '../../contexts/UserContext';
 import './App.css';
 
 class App extends Component {
-  state = { theme: 'dark', hasError: false, loading: false };
+  static contextType = UserContext;
+
+  state = { theme: 'dark', hasError: false, loading: this.context.loading };
 
   static getDerivedStateFromError(error) {
     return { hasError: true };
@@ -39,15 +42,9 @@ class App extends Component {
     }));
   };
 
-  toggleLoading = () => {
-    this.setState((state) => ({
-      loading: !state.loading
-    }));
-  };
-
   render() {
+    console.log(this.context);
     let { theme, hasError, loading } = this.state;
-
     return (
       <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
         <GlobalStyles />

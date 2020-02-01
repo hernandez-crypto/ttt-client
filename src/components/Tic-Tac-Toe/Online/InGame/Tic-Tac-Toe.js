@@ -44,7 +44,6 @@ export default class TicTacToe extends Component {
           ...this.state.client_user,
           symbol: this.state.client_user.id === res.player_one_id ? 'X' : 'O'
         },
-        roundStarted: false,
         currentPlayer: res.current_player,
         round: res.round
       });

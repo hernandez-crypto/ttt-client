@@ -25,7 +25,7 @@ export default class RegistrationForm extends Component {
           user_name: user_name.value,
           password: password.value
         }).then((res) => {
-          TokenService.saveLoginInfo(res.authToken, res.user_name, res.user_id);
+          TokenService.saveAuthToken(res.authToken);
         });
       })
       .then(() => {
