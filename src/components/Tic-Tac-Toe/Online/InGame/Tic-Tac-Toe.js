@@ -28,7 +28,6 @@ export default class TicTacToe extends Component {
 
   makeFetchCallAndUpdate = () => {
     BoardApiService.getCurrentBoard(this.props.roomName).then((res) => {
-      console.log(res);
       this.setState({
         board: res.board,
         playerOne: {

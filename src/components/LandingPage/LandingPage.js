@@ -5,7 +5,6 @@ export default class LandingPage extends Component {
   render() {
     return (
       <div className="landingPage">
-        <h2>Hello ! Thank you for visiting my site !</h2>
         <p>
           This app is a basic tic tac toe game that features :
           <ul>

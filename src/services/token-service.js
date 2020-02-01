@@ -1,18 +1,9 @@
 import config from '../config';
 
 const TokenService = {
-  // saveLoginInfo(token, name, id) {
-  //   window.localStorage.setItem(config.TOKEN_KEY, token);
-  //   window.localStorage.setItem(config.USER_ID, id);
-  //   window.localStorage.setItem(config.USER_NAME, name);
-  // },
-  saveAuthToken(token) {
+  saveLoginInfo(token, name, id) {
     window.localStorage.setItem(config.TOKEN_KEY, token);
-  },
-  saveAuthId(id) {
     window.localStorage.setItem(config.USER_ID, id);
-  },
-  saveAuthName(name) {
     window.localStorage.setItem(config.USER_NAME, name);
   },
   getAuthName() {
@@ -26,13 +17,15 @@ const TokenService = {
   },
   clearAuthToken() {
     window.localStorage.removeItem(config.TOKEN_KEY);
+    window.localStorage.removeItem(config.USER_ID);
+    window.localStorage.removeItem(config.USER_NAME);
   },
   hasAuthToken() {
     return !!TokenService.getAuthToken();
   },
   makeBasicAuthToken(userName, password) {
     return window.btoa(`${userName}:${password}`);
-  },
+  }
 };
 
 export default TokenService;

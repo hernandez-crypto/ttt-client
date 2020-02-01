@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import AuthApiService from '../../services/auth-api-service';
+import TokenService from '../../services/token-service';
 import { Button, Input, Required } from '../Utils/Utils';
 import './RegistrationForm.css';
 
@@ -19,7 +20,15 @@ export default class RegistrationForm extends Component {
       user_name: user_name.value,
       password: password.value
     })
-      .then((user) => {
+      .then(() => {
+        AuthApiService.postLogin({
+          user_name: user_name.value,
+          password: password.value
+        }).then((res) => {
+          TokenService.saveLoginInfo(res.authToken, res.user_name, res.user_id);
+        });
+      })
+      .then(() => {
         user_name.value = '';
         password.value = '';
         this.props.onRegistrationSuccess();
@@ -31,6 +40,7 @@ export default class RegistrationForm extends Component {
 
   render() {
     const { error } = this.state;
+    console.log(this);
     return (
       <form className="RegistrationForm" onSubmit={this.handleSubmit}>
         <div role="alert">{error && <p className="red">{error}</p>}</div>

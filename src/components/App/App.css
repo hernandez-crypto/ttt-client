@@ -17,3 +17,10 @@
   bottom: 0;
   width: 100%;
 }
+
+.spinnerContainer {
+  margin: auto auto;
+  align-items: center;
+  height: 80vh;
+  display: flex;
+}
