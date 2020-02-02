@@ -43,7 +43,6 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.context);
     let { theme, hasError, loading } = this.state;
     return (
       <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
@@ -66,15 +65,9 @@ class App extends Component {
               {hasError && <p className="red">There was an error! Oh no!</p>}
               <Switch>
                 <Route exact path={'/'} component={LandingPage} />
-                <PublicOnlyRoute
-                  path={'/login'}
-                  render={(props) => (
-                    <LoginPage {...props} loadToggle={this.toggleLoading} />
-                  )}
-                />
+                <PublicOnlyRoute path={'/login'} component={LoginPage} />
                 <PublicOnlyRoute
                   path={'/register'}
-                  props={{ loadToggle: this.toggleLoading }}
                   component={RegistrationPage}
                 />
                 <Route exact path={'/offline'} component={TTTOffline} />

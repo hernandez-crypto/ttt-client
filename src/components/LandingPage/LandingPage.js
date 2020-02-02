@@ -33,6 +33,9 @@ export default class LandingPage extends Component {
           Press the Tic-Tac-Toe header to play offline or the login / register
           to play online !
         </h3>
+        <h3>
+          <a href="/offline">Offline</a>
+        </h3>
       </div>
     );
   }

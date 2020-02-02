@@ -49,10 +49,13 @@ export class UserProvider extends Component {
     this.setState((state) => ({ loading: !state.loading }));
   };
 
+  handleRegistration = ({ username, password }) => {
+    AuthApiService.postUser({ username, password });
+  };
+
   handleLogin = ({ username, password }) => {
-    AuthApiService.postLogin({ username, password }).then((res) => {
-      TokenService.saveAuthToken(res.authToken);
-    });
+    let authToken = AuthApiService.postLogin({ username, password });
+    TokenService.saveAuthToken(authToken);
   };
 
   processLogin = (authToken) => {

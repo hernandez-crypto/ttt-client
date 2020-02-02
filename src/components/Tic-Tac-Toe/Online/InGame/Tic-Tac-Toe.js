@@ -18,7 +18,7 @@ export default class TicTacToe extends Component {
       name: ''
     },
     client_user: {
-      id: parseInt(TokenService.getAuthId()),
+      id: parseInt(TokenService.parseAuthToken().id),
       symbol: ''
     },
     board: [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -74,26 +74,14 @@ export default class TicTacToe extends Component {
   setChoice = (squareNumber) => {
     this.makeFetchCallAndUpdate();
     if (this.state.playerTwo.name === 'undefined') return;
-    let {
-      currentPlayer,
-      client_user,
-      board,
-      playerOne,
-      playerTwo
-    } = this.state;
+    let { currentPlayer, client_user, board, playerTwo } = this.state;
     if (
       currentPlayer === client_user.id &&
       parseInt(board[squareNumber]) === 0 &&
       playerTwo.id !== null
     ) {
-      let otherUserId =
-        client_user.id === playerOne.id ? playerTwo.id : playerOne.id;
       board[squareNumber] = client_user.symbol;
-      BoardApiService.patchNewMove(
-        this.props.roomName,
-        board,
-        otherUserId
-      ).then((res) => {
+      BoardApiService.patchNewMove(this.props.roomName, board).then((res) => {
         this.setState({
           board: res.board,
           currentPlayer: res.current_player
