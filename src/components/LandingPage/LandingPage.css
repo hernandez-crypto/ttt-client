@@ -5,3 +5,10 @@
   font-weight: 400;
   text-align: center;
 }
+.landingLinks {
+  display: flex;
+  justify-content: center;
+}
+.landingLinks a {
+  padding: 0 7.5px;
+}

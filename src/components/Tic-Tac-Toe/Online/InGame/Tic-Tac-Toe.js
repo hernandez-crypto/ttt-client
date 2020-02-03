@@ -18,7 +18,7 @@ export default class TicTacToe extends Component {
       name: ''
     },
     client_user: {
-      id: parseInt(TokenService.parseAuthToken().id),
+      id: parseInt(TokenService.parseAuthToken().user_id),
       symbol: ''
     },
     board: [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -31,12 +31,12 @@ export default class TicTacToe extends Component {
       this.setState({
         board: res.board,
         playerOne: {
-          name: res.player_one_usrname,
+          name: res.player_one_username,
           id: res.player_one_id,
           score: res.player_one_score
         },
         playerTwo: {
-          name: res.player_two_usrname,
+          name: res.player_two_username,
           id: res.player_two_id,
           score: res.player_two_score
         },
@@ -72,22 +72,20 @@ export default class TicTacToe extends Component {
   }
 
   setChoice = (squareNumber) => {
-    this.makeFetchCallAndUpdate();
-    if (this.state.playerTwo.name === 'undefined') return;
-    let { currentPlayer, client_user, board, playerTwo } = this.state;
-    if (
-      currentPlayer === client_user.id &&
-      parseInt(board[squareNumber]) === 0 &&
-      playerTwo.id !== null
-    ) {
-      board[squareNumber] = client_user.symbol;
-      BoardApiService.patchNewMove(this.props.roomName, board).then((res) => {
+    let { currentPlayer, client_user } = this.state;
+    if (currentPlayer === client_user.id) {
+      BoardApiService.patchNewMove(
+        this.props.roomName,
+        squareNumber,
+        client_user.symbol
+      ).then((res) => {
+        console.log(res);
         this.setState({
           board: res.board,
           currentPlayer: res.current_player
         });
       });
-    } else this.setState({ error: 'Slow Down Buster' });
+    } else this.setState({ error: `It's not your turn yet :(` });
   };
 
   render() {

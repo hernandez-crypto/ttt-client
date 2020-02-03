@@ -39,14 +39,14 @@ const BoardApiService = {
         return res;
       });
   },
-  patchNewMove(game_room, index) {
+  patchNewMove(game_room, index, symbol) {
     return fetch(`${config.API_ENDPOINT}/games/${game_room}`, {
       method: 'PATCH',
       headers: {
         'content-type': 'application/json',
         authorization: `bearer ${TokenService.getAuthToken()}`
       },
-      body: JSON.stringify({ index })
+      body: JSON.stringify({ index, symbol })
     })
       .then((res) =>
         !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
@@ -55,15 +55,6 @@ const BoardApiService = {
         res.board = res.board.split('');
         return res;
       });
-  },
-  findIfNewRound(NewBoard, currentBoard) {
-    if (JSON.stringify(NewBoard) !== JSON.stringify(currentBoard)) {
-      let filteredArray = NewBoard.filter((square) => square === '0');
-      if (filteredArray.length === 8 || filteredArray.length === 0) {
-        return true;
-      }
-      return;
-    } else return false;
   }
 };
 

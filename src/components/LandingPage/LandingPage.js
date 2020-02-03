@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './LandingPage.css';
 
 export default class LandingPage extends Component {
   render() {
     return (
       <div className="landingPage">
-        <p>
-          This app is a basic tic tac toe game that features :
-          <ul>
-            <li>Web Multiplayer</li>
-            <li>Local Multiplayer</li>
-            <li>Unbeatable AI that uses minimax algorithm</li>
-            <li>Beatable bots to restore confidence</li>
-          </ul>
-        </p>
+        <p>This app is a basic tic tac toe game that features :</p>
+        <ul>
+          <li>Web Multiplayer</li>
+          <li>Local Multiplayer</li>
+          <li>Unbeatable AI that uses minimax algorithm</li>
+          <li>Beatable bots to restore confidence</li>
+        </ul>
         <p>
           To use web multiplayer, both players must be registered. Then player
           one will create a game using the 'Create New Game' button. This will
@@ -33,9 +32,14 @@ export default class LandingPage extends Component {
           Press the Tic-Tac-Toe header to play offline or the login / register
           to play online !
         </h3>
-        <h3>
-          <a href="/offline">Offline</a>
-        </h3>
+        <div className="landingLinks">
+          <h2>
+            <Link to="/offline">Offline</Link>
+          </h2>
+          <h2>
+            <Link to="/online">Online</Link>
+          </h2>
+        </div>
       </div>
     );
   }

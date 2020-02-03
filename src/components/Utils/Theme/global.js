@@ -11,7 +11,7 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.text};
   }
   div {
-    border-color: ${({ theme }) => theme.text};
+    border-color: ${({ theme }) => theme.text} !important;
   }
   button {
     display: block;

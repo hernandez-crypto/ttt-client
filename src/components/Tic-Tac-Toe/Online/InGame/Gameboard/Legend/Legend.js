@@ -2,7 +2,6 @@ import React from 'react';
 import './Legend.css';
 
 export default function Legend(props) {
-  console.log(props);
   let { playerOne, playerTwo, currentPlayer, roomName, round } = props;
   return (
     <>

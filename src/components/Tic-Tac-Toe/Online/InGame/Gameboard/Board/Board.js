@@ -5,6 +5,7 @@ import './Board.css';
 export default class Board extends Component {
   render() {
     let { board, setChoice } = this.props;
+    console.log(board);
     let boxes = board.map((square, i) => (
       <Square
         setChoice={setChoice}

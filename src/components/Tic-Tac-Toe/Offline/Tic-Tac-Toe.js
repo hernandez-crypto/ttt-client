@@ -74,11 +74,11 @@ export default class TicTacToe extends Component {
     });
   };
 
-  toggleWinnerBoxes = (a, b, c, winner) => {
+  toggleWinnerBoxes = (boxes, winner) => {
     let threeRow = [
-      document.getElementById(a),
-      document.getElementById(b),
-      document.getElementById(c)
+      document.getElementById(boxes[0]),
+      document.getElementById(boxes[1]),
+      document.getElementById(boxes[2])
     ];
     threeRow.forEach((box) => box.classList.add(winner));
   };
@@ -102,12 +102,12 @@ export default class TicTacToe extends Component {
       let two = [...playerTwo.moves, parseInt(squareNumber)];
       if (currentPlayer === 1) {
         if (one.includes(a) && one.includes(b) && one.includes(c)) {
-          toggleWinnerBoxes(a, b, c, 'oneWinner');
+          toggleWinnerBoxes([a, b, c], 'oneWinner');
           return handleEndGame(currentPlayer);
         }
       } else if (currentPlayer === 2) {
         if (two.includes(a) && two.includes(b) && two.includes(c)) {
-          toggleWinnerBoxes(a, b, c, 'twoWinner');
+          toggleWinnerBoxes([a, b, c], 'twoWinner');
           return handleEndGame(currentPlayer);
         }
       }
