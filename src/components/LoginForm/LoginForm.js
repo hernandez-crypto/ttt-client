@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TokenService from '../../services/token-service';
 import AuthApiService from '../../services/auth-api-service';
-import { Button, Input } from '../Utils/Utils';
+import { Button, TextInput } from '../Utils/Utils';
 import './LoginForm.css';
 
 export default class LoginForm extends Component {
@@ -37,21 +37,28 @@ export default class LoginForm extends Component {
       <form className="LoginForm" onSubmit={this.handleSubmitJwtAuth}>
         <div role="alert">{error && <p className="red">{error}</p>}</div>
         <div className="username">
-          <label htmlFor="LoginForm__username">User name</label>
-          <Input
-            required
-            autoComplete="username"
-            name="username"
-            id="LoginForm__username"></Input>
+          <TextInput
+            props={{
+              required: true,
+              label: 'Username',
+              placeholder: '',
+              autoComplete: 'username',
+              name: 'username',
+              id: 'LoginForm__username'
+            }}
+          />
         </div>
         <div className="password">
-          <label htmlFor="LoginForm__password">Password</label>
-          <Input
-            required
-            autoComplete="current-password"
-            name="password"
-            type="password"
-            id="LoginForm__password"></Input>
+          <TextInput
+            props={{
+              required: true,
+              label: 'Password',
+              autoComplete: 'current-password',
+              name: 'password',
+              type: 'password',
+              id: 'LoginForm__password'
+            }}
+          />
         </div>
         <Button type="submit">Login</Button>
       </form>

@@ -9,3 +9,7 @@
 .GameFormContainer {
   font-family: 'Permanent Marker', cursive;
 }
+.JoinGameForm div {
+  display: flex;
+  justify-content: center;
+}

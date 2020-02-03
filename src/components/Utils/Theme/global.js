@@ -7,8 +7,8 @@ export const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
   }
   body {
-    background: ${({ theme }) => theme.body};
-    color: ${({ theme }) => theme.text};
+    background: ${({ theme }) => theme.body} !important;
+    color: ${({ theme }) => theme.text} !important;
   }
   div {
     border-color: ${({ theme }) => theme.text} !important;
@@ -16,7 +16,11 @@ export const GlobalStyles = createGlobalStyle`
   button {
     display: block;
   }
-  a, p {
-    color: ${({ theme }) => theme.text};
+  a, p,label{
+    color: ${({ theme }) => theme.text} !important;
+  }
+  input {
+    color: ${({ theme }) => theme.text} !important;
+    background: ${({ theme }) => theme.body} !important;
   }
 `;

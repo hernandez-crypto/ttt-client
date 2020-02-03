@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import AuthApiService from '../../services/auth-api-service';
 import TokenService from '../../services/token-service';
-import { Button, Input, Required } from '../Utils/Utils';
+import { Button, TextInput } from '../Utils/Utils';
 import UserContext from '../../contexts/UserContext';
 import './RegistrationForm.css';
 
@@ -47,26 +47,33 @@ export default class RegistrationForm extends Component {
       <form className="RegistrationForm" onSubmit={this.handleSubmit}>
         <div role="alert">{error && <p className="red">{error}</p>}</div>
         <div className="user_name">
-          <label htmlFor="RegistrationForm__username">
-            Username <Required />
-          </label>
-          <Input
-            name="username"
-            autoComplete="username"
-            type="text"
-            required
-            id="RegistrationForm__username"></Input>
+          <TextInput
+            props={{
+              name: 'username',
+              label: 'Username',
+              placeholder: 'ex. dunderMifflin',
+              autoComplete: 'off',
+              autoFocus: true,
+              type: 'text',
+              required: true,
+              error: error,
+              id: 'RegistrationForm__username'
+            }}
+          />
         </div>
         <div className="password">
-          <label htmlFor="RegistrationForm__password">
-            Password <Required />
-          </label>
-          <Input
-            name="password"
-            type="password"
-            autoComplete="current-password"
-            required
-            id="RegistrationForm__password"></Input>
+          <TextInput
+            props={{
+              label: 'Password',
+              name: 'password',
+              placeholder: 'ex. password',
+              type: 'password',
+              error: error,
+              autoComplete: 'off',
+              required: true,
+              id: 'RegistrationForm__password'
+            }}
+          />
         </div>
         <Button type="submit">Register</Button>
       </form>
