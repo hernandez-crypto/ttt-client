@@ -22,10 +22,12 @@ export default class LoginForm extends Component {
     })
       .then((res) => {
         this.props.toggleLoading();
-        username.value = '';
-        password.value = '';
-        TokenService.saveAuthToken(res.authToken);
-        this.props.onLoginSuccess();
+        setTimeout(() => {
+          username.value = '';
+          password.value = '';
+          TokenService.saveAuthToken(res.authToken);
+          this.props.onLoginSuccess();
+        }, 1000);
       })
       .catch((res) => {
         this.setState({ error: res.error });

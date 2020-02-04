@@ -22,6 +22,7 @@ export default class RegistrationForm extends Component {
       password: password.value
     })
       .then(() => {
+        this.props.toggleLoading();
         AuthApiService.postLogin({
           username: username.value,
           password: password.value
@@ -30,10 +31,11 @@ export default class RegistrationForm extends Component {
         });
       })
       .then(() => {
-        this.props.toggleLoading();
-        username.value = '';
-        password.value = '';
-        this.props.onRegistrationSuccess();
+        setTimeout(() => {
+          username.value = '';
+          password.value = '';
+          this.props.onRegistrationSuccess();
+        }, 1000);
       })
       .catch((res) => {
         this.setState({ error: res.error });
