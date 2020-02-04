@@ -15,3 +15,16 @@
     - Minimax
 
 #### Screenshots
+
+![onlineLight](/screenshots/onlineLight.png 'Online Page Light')
+![onlineDark](/screenshots/onlineDark.png 'Online Page Dark')
+![offlineLight](/screenshots/offlineLight.png 'Offline Page Light')
+![offlineDark](/screenshots/offlineDark.png 'Offline Page Dark')
+![registrationLight](/screenshots/registrationLight.png 'Registration Page Light')
+![registrationDark](/screenshots/registrationDark.png 'Registration Page Dark')
+![landingPageLight](/screenshots/landingLight.png 'Landing Page Light')
+![landingPageDark](/screenshots/landingDark.png 'Landing Page Dark')
+![loadingLight](/screenshots/loadingLight.png 'Loading Animation Light')
+![loadingDark](/screenshots/loadingDark.png 'Loading Animation Dark')
+![gameFormLight](/screenshots/gameFormLight.png 'Game Form Page Light')
+![gameFormDark](/screenshots/gameFormDark.png 'Game Form Page Dark')
