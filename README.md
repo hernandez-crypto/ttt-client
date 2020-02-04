@@ -10,7 +10,7 @@
 
 ### Technology
 
-    - React, CSS3, Material-UI, Javascript
+    - React, CSS3, Material-UI, Javascript, JWT-Decode
 
 ### Algorithm Used
 
