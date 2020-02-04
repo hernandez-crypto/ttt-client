@@ -1,5 +1,7 @@
 # Tic-Tac-Toe Client !
 
+    - Link to live project : https://ttt-client.hernandezjulio58.now.sh/
+
 ## About this project
 
 - This is a tic-tac-toe project featuring local / web multiplayer. The front-end of this project is connected to an API deployed on heroku. That server is responsible for creating / storing users, and also changing game state.
