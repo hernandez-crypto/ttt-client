@@ -13,6 +13,7 @@ export default class LoginForm extends Component {
 
   handleSubmitJwtAuth = (ev) => {
     ev.preventDefault();
+    this.props.toggleLoading();
     this.setState({ error: null });
     const { username, password } = ev.target;
 
@@ -21,6 +22,7 @@ export default class LoginForm extends Component {
       password: password.value
     })
       .then((res) => {
+        console.log(res);
         username.value = '';
         password.value = '';
         TokenService.saveAuthToken(res.authToken);

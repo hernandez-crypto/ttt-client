@@ -28,10 +28,6 @@ export default class LandingPage extends Component {
           There is also a light / dark mode feature. Simply press the 'Toggle
           Theme' button.
         </p>
-        <h3>
-          Press the Tic-Tac-Toe header to play offline or the login / register
-          to play online !
-        </h3>
         <div className="landingLinks">
           <h2>
             <Link to="/offline">Offline</Link>

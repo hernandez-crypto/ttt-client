@@ -16,7 +16,6 @@ export default class RegistrationForm extends Component {
   handleSubmit = (ev) => {
     ev.preventDefault();
     const { username, password } = ev.target;
-
     this.setState({ error: null });
     AuthApiService.postUser({
       username: username.value,
@@ -31,6 +30,7 @@ export default class RegistrationForm extends Component {
         });
       })
       .then(() => {
+        this.props.toggleLoading();
         username.value = '';
         password.value = '';
         this.props.onRegistrationSuccess();
@@ -42,7 +42,6 @@ export default class RegistrationForm extends Component {
 
   render() {
     const { error } = this.state;
-    console.log(this);
     return (
       <form className="RegistrationForm" onSubmit={this.handleSubmit}>
         <div role="alert">{error && <p className="red">{error}</p>}</div>
@@ -52,11 +51,11 @@ export default class RegistrationForm extends Component {
               name: 'username',
               label: 'Username',
               placeholder: 'ex. dunderMifflin',
-              autoComplete: 'off',
+              autoComplete: 'false',
               autoFocus: true,
               type: 'text',
               required: true,
-              error: error,
+              error: !!error,
               id: 'RegistrationForm__username'
             }}
           />
@@ -68,8 +67,8 @@ export default class RegistrationForm extends Component {
               name: 'password',
               placeholder: 'ex. password',
               type: 'password',
-              error: error,
-              autoComplete: 'off',
+              error: !!error,
+              autoComplete: 'new-password',
               required: true,
               id: 'RegistrationForm__password'
             }}

@@ -25,13 +25,15 @@ export default class JoinGameForm extends Component {
       });
   };
   createNewGame = () => {
+    let { toggleLoading, onJoinSuccess } = this.props;
     let roomName = Math.random()
       .toString(36)
       .substring(2, 15);
     BoardApiService.createNewBoard(roomName).then((res) => {
-      BoardApiService.getCurrentBoard(res.board.game_room)
+      toggleLoading();
+      BoardApiService.getCurrentBoard(res.game.game_room)
         .then(() => {
-          this.props.onJoinSuccess(res.board.game_room);
+          onJoinSuccess(res.game.game_room);
         })
         .catch((res) => {
           this.setState({ error: res.error });
@@ -55,10 +57,11 @@ export default class JoinGameForm extends Component {
           <div>
             <TextInput
               props={{
-                label: 'Game Room',
+                label: 'Join Game',
                 name: 'game_room',
                 type: 'text',
                 placeholder: 'ex. fasd7as78d',
+                fullWidth: true,
                 required: true,
                 id: 'JoinGameForm__game_room'
               }}

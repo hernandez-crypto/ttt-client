@@ -10,7 +10,8 @@ export default class RegistrationPage extends Component {
   };
 
   handleRegistrationSuccess = (user) => {
-    const { history } = this.props;
+    const { history, toggleLoading } = this.props;
+    toggleLoading();
     history.push('/offline');
   };
 
@@ -19,6 +20,7 @@ export default class RegistrationPage extends Component {
       <Section className="RegistrationPage">
         <h2>Register</h2>
         <RegistrationForm
+          toggleLoading={this.props.toggleLoading}
           onRegistrationSuccess={this.handleRegistrationSuccess}
         />
       </Section>

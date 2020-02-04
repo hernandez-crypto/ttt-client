@@ -19,6 +19,17 @@ export default class Header extends Component {
       </>
     );
   }
+
+  renderLogoutLinkNarrow() {
+    return (
+      <>
+        <Link onClick={this.handleLogoutClick} to="/offline">
+          <Button className="Header__logged-in">Logout</Button>
+        </Link>
+      </>
+    );
+  }
+
   renderLoginLink() {
     return (
       <div className="Header__not-logged-in">
@@ -38,6 +49,11 @@ export default class Header extends Component {
           <span className="Header__tagline--wide">
             {TokenService.hasAuthToken()
               ? this.renderLogoutLink()
+              : this.renderLoginLink()}
+          </span>
+          <span className="Header__tagline--narrow">
+            {TokenService.hasAuthToken()
+              ? this.renderLogoutLinkNarrow()
               : this.renderLoginLink()}
           </span>
         </nav>

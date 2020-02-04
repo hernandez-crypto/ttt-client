@@ -5,8 +5,6 @@ import TokenService from '../services/token-service';
 const UserContext = React.createContext({
   user: {},
   error: null,
-  loading: false,
-  setLoading: () => {},
   setError: () => {},
   clearError: () => {},
   setUser: () => {},
@@ -19,7 +17,7 @@ export default UserContext;
 export class UserProvider extends Component {
   constructor(props) {
     super(props);
-    const state = { user: {}, error: null, loading: false };
+    const state = { user: {}, error: null };
 
     const jwtPayload = TokenService.parseAuthToken();
 
@@ -45,12 +43,17 @@ export class UserProvider extends Component {
     this.setState({ user });
   };
 
-  toggleLoading = () => {
-    this.setState((state) => ({ loading: !state.loading }));
-  };
-
   handleRegistration = ({ username, password }) => {
-    AuthApiService.postUser({ username, password });
+    this.toggleLoading();
+    AuthApiService.postUser({ username, password })
+      .then(() => {
+        AuthApiService.postLogin({ username, password }).then((res) => {
+          TokenService.saveAuthToken(res.authToken);
+        });
+      })
+      .catch((res) => {
+        this.setState({ error: res.error });
+      });
   };
 
   handleLogin = ({ username, password }) => {
@@ -76,11 +79,10 @@ export class UserProvider extends Component {
     const value = {
       user: this.state.user,
       error: this.state.error,
-      loading: this.state.loading,
       setError: this.setError,
       clearError: this.clearError,
       setUser: this.setUser,
-      toggleLoading: this.toggleLoading,
+      handleRegistration: this.handleRegistration,
       processLogin: this.processLogin,
       processLogout: this.processLogout
     };

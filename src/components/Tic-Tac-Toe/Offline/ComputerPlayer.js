@@ -30,7 +30,7 @@ export default class ComputerPlayer {
   }
 
   makeMove = (difficulty, board) => {
-    switch (difficulty) {
+    switch (parseInt(difficulty)) {
       case 1:
         return this.easyMode(board);
       case 2:
@@ -51,7 +51,7 @@ export default class ComputerPlayer {
       }
     });
     let choice = options[Math.floor(Math.random() * options.length)];
-    this.setChoice(choice);
+    return this.setChoice(choice);
   };
 
   mediumMode = (board) => {
@@ -59,8 +59,8 @@ export default class ComputerPlayer {
     board.forEach((square) => {
       if (typeof square === 'number') nums += 1;
     });
-    if (nums % 2 === 0) this.hardMode(board);
-    this.easyMode(board);
+    if (nums % 2 === 0) return this.hardMode(board);
+    return this.easyMode(board);
   };
 
   hardMode = (board) => {
@@ -79,7 +79,7 @@ export default class ComputerPlayer {
         }
       }
     });
-    this.setChoice(move); // make the move on the board
+    return this.setChoice(move); // make the move on the board
   };
 
   miniMax = (board, maximizing, depth) => {

@@ -5,6 +5,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 60vh;
 }
 .LoginForm div {
   margin: 5px;

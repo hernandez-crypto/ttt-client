@@ -5,6 +5,9 @@
   font-weight: 400;
   text-align: center;
 }
+.landingPage p {
+  font-size: 1rem;
+}
 .landingLinks {
   display: flex;
   justify-content: center;

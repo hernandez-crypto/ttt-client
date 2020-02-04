@@ -7,9 +7,11 @@
   margin: 10px auto;
 }
 .GameFormContainer {
+  height: 60vh;
   font-family: 'Permanent Marker', cursive;
 }
 .JoinGameForm div {
   display: flex;
   justify-content: center;
+  margin: 5px 0;
 }

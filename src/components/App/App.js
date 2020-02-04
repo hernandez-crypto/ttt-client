@@ -14,7 +14,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from '../Utils//Theme/theme';
 import { GlobalStyles } from '../Utils/Theme/global';
-import { PacmanLoader } from 'react-spinners';
+import { ClimbingBoxLoader } from 'react-spinners';
 import { css } from '@emotion/core';
 import UserContext from '../../contexts/UserContext';
 import './App.css';
@@ -22,13 +22,13 @@ import './App.css';
 class App extends Component {
   static contextType = UserContext;
 
-  state = { theme: 'dark', hasError: false, loading: this.context.loading };
+  state = { theme: 'dark', hasError: false, loading: false };
 
   static getDerivedStateFromError(error) {
     return { hasError: true };
   }
 
-  pacManStyles = () => {
+  loaderStyles = () => {
     return css`
       display: block;
       margin: auto auto;
@@ -38,8 +38,12 @@ class App extends Component {
 
   toggleTheme = () => {
     this.setState((state) => ({
-      theme: state.theme === 'light' ? 'dark' : 'light'
+      theme: state.theme === 'dark' ? 'light' : 'dark'
     }));
+  };
+
+  toggleLoading = () => {
+    this.setState((state) => ({ loading: !state.loading }));
   };
 
   render() {
@@ -54,8 +58,8 @@ class App extends Component {
 
           {loading === true ? (
             <div className="spinnerContainer">
-              <PacmanLoader
-                css={this.pacManStyles()}
+              <ClimbingBoxLoader
+                css={this.loaderStyles()}
                 size={50}
                 color={this.state.theme === 'dark' ? '#E2E2E2' : '#363537'}
               />
@@ -65,16 +69,25 @@ class App extends Component {
               {hasError && <p className="red">There was an error! Oh no!</p>}
               <Switch>
                 <Route exact path={'/'} component={LandingPage} />
-                <PublicOnlyRoute path={'/login'} component={LoginPage} />
+                <Route exact path={'/offline'} component={TTTOffline} />
+                <PublicOnlyRoute
+                  path={'/login'}
+                  component={() => (
+                    <LoginPage toggleLoading={this.toggleLoading} />
+                  )}
+                />
                 <PublicOnlyRoute
                   path={'/register'}
-                  component={RegistrationPage}
+                  component={() => (
+                    <RegistrationPage toggleLoading={this.toggleLoading} />
+                  )}
                 />
-                <Route exact path={'/offline'} component={TTTOffline} />
                 <PrivateRoute
                   exact
                   path={'/online'}
-                  component={TTTOnlineForm}
+                  component={() => (
+                    <TTTOnlineForm toggleLoading={this.toggleLoading} />
+                  )}
                 />
                 <PrivateRoute
                   path={'/online/:room_name'}
@@ -84,11 +97,10 @@ class App extends Component {
               </Switch>
             </main>
           )}
-
-          <footer className="App__footer">
-            <Footer toggleTheme={this.toggleTheme} />
-          </footer>
         </div>
+        <footer className="App__footer">
+          <Footer toggleTheme={this.toggleTheme} />
+        </footer>
       </ThemeProvider>
     );
   }

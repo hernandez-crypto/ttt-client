@@ -11,16 +11,19 @@ export default class LoginPage extends Component {
   };
 
   handleLoginSuccess = () => {
-    const { location, history } = this.props;
-    const destination = (location.state || {}).from || '/online';
-    history.push(destination);
+    const { history, toggleLoading } = this.props;
+    toggleLoading();
+    history.push('/online');
   };
 
   render() {
     return (
       <Section className="LoginPage">
         <h2>Login</h2>
-        <LoginForm onLoginSuccess={this.handleLoginSuccess} />
+        <LoginForm
+          onLoginSuccess={this.handleLoginSuccess}
+          toggleLoading={this.props.toggleLoading}
+        />
       </Section>
     );
   }

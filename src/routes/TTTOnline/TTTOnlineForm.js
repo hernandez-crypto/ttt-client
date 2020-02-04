@@ -10,7 +10,9 @@ export default class TTTOnlineForm extends Component {
     }
   };
   onJoinSuccess = (gameRoom) => {
-    const { history } = this.props;
+    const { history, toggleLoading } = this.props;
+    toggleLoading();
+    console.log(`/online/${gameRoom}`);
     history.push(`/online/${gameRoom}`);
   };
   render() {
@@ -20,7 +22,10 @@ export default class TTTOnlineForm extends Component {
           <Link to="/offline">
             <h3>Play Offline</h3>
           </Link>
-          <TicTacToeForm onJoinSuccess={this.onJoinSuccess} />
+          <TicTacToeForm
+            onJoinSuccess={this.onJoinSuccess}
+            toggleLoading={this.props.toggleLoading}
+          />
         </Section>
       </div>
     );
