@@ -2,6 +2,9 @@ div.footer__content {
   display: flex;
   justify-content: space-between;
 }
+.toggleTheme:hover {
+  cursor: pointer;
+}
 
 div.footer__content p {
   margin-left: 8px;

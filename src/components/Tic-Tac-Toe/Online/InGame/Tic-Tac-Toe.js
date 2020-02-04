@@ -72,20 +72,27 @@ export default class TicTacToe extends Component {
   }
 
   setChoice = (squareNumber) => {
-    let { currentPlayer, client_user } = this.state;
-    if (currentPlayer === client_user.id) {
-      BoardApiService.patchNewMove(
-        this.props.roomName,
-        squareNumber,
-        client_user.symbol
-      ).then((res) => {
-        console.log(res);
-        this.setState({
-          board: res.board,
-          currentPlayer: res.current_player
-        });
+    let { currentPlayer, client_user, playerTwo, board } = this.state;
+    if (playerTwo.name == null) {
+      this.setState({
+        error: 'P2 has not yet joined, Please make sure to share the Room Name.'
       });
-    } else this.setState({ error: `It's not your turn yet :(` });
+      return;
+    }
+    if (board[squareNumber] === '0' || board[squareNumber] === 0) {
+      if (currentPlayer === client_user.id) {
+        BoardApiService.patchNewMove(
+          this.props.roomName,
+          squareNumber,
+          client_user.symbol
+        ).then((res) => {
+          this.setState({
+            board: res.board,
+            currentPlayer: res.current_player
+          });
+        });
+      } else this.setState({ error: `It's not your turn yet :(` });
+    } else this.setState({ error: `That spot has been taken :(` });
   };
 
   render() {

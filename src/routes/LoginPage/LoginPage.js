@@ -11,8 +11,8 @@ export default class LoginPage extends Component {
   };
 
   handleLoginSuccess = () => {
-    const { history, toggleLoading } = this.props;
-    toggleLoading();
+    const { history, props } = this.props;
+    props.toggleLoading();
     history.push('/online');
   };
 
@@ -22,7 +22,7 @@ export default class LoginPage extends Component {
         <h2>Login</h2>
         <LoginForm
           onLoginSuccess={this.handleLoginSuccess}
-          toggleLoading={this.props.toggleLoading}
+          toggleLoading={this.props.props.toggleLoading}
         />
       </Section>
     );

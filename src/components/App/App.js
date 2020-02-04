@@ -72,22 +72,19 @@ class App extends Component {
                 <Route exact path={'/offline'} component={TTTOffline} />
                 <PublicOnlyRoute
                   path={'/login'}
-                  component={() => (
-                    <LoginPage toggleLoading={this.toggleLoading} />
-                  )}
+                  props={{ toggleLoading: this.toggleLoading }}
+                  component={LoginPage}
                 />
                 <PublicOnlyRoute
                   path={'/register'}
-                  component={() => (
-                    <RegistrationPage toggleLoading={this.toggleLoading} />
-                  )}
+                  props={{ toggleLoading: this.toggleLoading }}
+                  component={RegistrationPage}
                 />
                 <PrivateRoute
                   exact
                   path={'/online'}
-                  component={() => (
-                    <TTTOnlineForm toggleLoading={this.toggleLoading} />
-                  )}
+                  props={{ toggleLoading: this.toggleLoading }}
+                  component={TTTOnlineForm}
                 />
                 <PrivateRoute
                   path={'/online/:room_name'}
@@ -97,10 +94,10 @@ class App extends Component {
               </Switch>
             </main>
           )}
+          <footer className="App__footer">
+            <Footer toggleTheme={this.toggleTheme} />
+          </footer>
         </div>
-        <footer className="App__footer">
-          <Footer toggleTheme={this.toggleTheme} />
-        </footer>
       </ThemeProvider>
     );
   }

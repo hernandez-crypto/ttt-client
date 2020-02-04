@@ -18,6 +18,7 @@ export default class JoinGameForm extends Component {
     this.setState({ error: null });
     BoardApiService.postSecondPlayer(game_room.value)
       .then(() => {
+        this.props.toggleLoading();
         this.props.onJoinSuccess(game_room.value);
       })
       .catch((res) => {

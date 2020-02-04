@@ -27,7 +27,7 @@ export default function Legend(props) {
         </h2>
       </div>
       <h2 className="legend Five">Round : {round} </h2>
-      <h3 className="legend Six">Room : {roomName} </h3>
+      <h3 className="legend Six">Room Name : {roomName} </h3>
     </>
   );
 }

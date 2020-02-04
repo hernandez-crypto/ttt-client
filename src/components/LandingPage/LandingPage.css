@@ -1,5 +1,8 @@
 .landingPage {
   padding: 1rem;
+  height: 75vh;
+  display: flex;
+  flex-direction: column;
 }
 .landingPage h3 {
   font-weight: 400;
@@ -10,8 +13,11 @@
 }
 .landingLinks {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
 }
 .landingLinks a {
   padding: 0 7.5px;
+}
+.playOptions {
+  margin: auto 0;
 }

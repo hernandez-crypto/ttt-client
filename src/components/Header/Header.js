@@ -44,7 +44,9 @@ export default class Header extends Component {
       <>
         <nav className="Header">
           <h1>
-            <Link to="/">Tic-Tac-Toe</Link>
+            <Link to={TokenService.hasAuthToken() ? '/offline' : '/'}>
+              Tic-Tac-Toe
+            </Link>
           </h1>
           <span className="Header__tagline--wide">
             {TokenService.hasAuthToken()

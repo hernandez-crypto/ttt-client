@@ -10,9 +10,8 @@ export default class TTTOnlineForm extends Component {
     }
   };
   onJoinSuccess = (gameRoom) => {
-    const { history, toggleLoading } = this.props;
-    toggleLoading();
-    console.log(`/online/${gameRoom}`);
+    const { history, props } = this.props;
+    props.toggleLoading();
     history.push(`/online/${gameRoom}`);
   };
   render() {
@@ -24,7 +23,7 @@ export default class TTTOnlineForm extends Component {
           </Link>
           <TicTacToeForm
             onJoinSuccess={this.onJoinSuccess}
-            toggleLoading={this.props.toggleLoading}
+            toggleLoading={this.props.props.toggleLoading}
           />
         </Section>
       </div>

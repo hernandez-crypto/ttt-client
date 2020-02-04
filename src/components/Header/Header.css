@@ -4,7 +4,6 @@
   align-items: normal;
   justify-content: space-between;
 }
-
 .Header h1 {
   margin: 0;
 }
@@ -15,7 +14,7 @@
 
 .Header__tagline--wide {
   opacity: 0.8;
-  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .Header__tagline--narrow {

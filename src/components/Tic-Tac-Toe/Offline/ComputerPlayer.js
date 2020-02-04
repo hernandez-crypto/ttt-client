@@ -60,7 +60,7 @@ export default class ComputerPlayer {
       if (typeof square === 'number') nums += 1;
     });
     if (nums % 2 === 0) return this.hardMode(board);
-    return this.easyMode(board);
+    else return this.easyMode(board);
   };
 
   hardMode = (board) => {

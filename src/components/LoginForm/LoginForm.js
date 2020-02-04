@@ -13,7 +13,6 @@ export default class LoginForm extends Component {
 
   handleSubmitJwtAuth = (ev) => {
     ev.preventDefault();
-    this.props.toggleLoading();
     this.setState({ error: null });
     const { username, password } = ev.target;
 
@@ -22,7 +21,7 @@ export default class LoginForm extends Component {
       password: password.value
     })
       .then((res) => {
-        console.log(res);
+        this.props.toggleLoading();
         username.value = '';
         password.value = '';
         TokenService.saveAuthToken(res.authToken);
@@ -43,7 +42,7 @@ export default class LoginForm extends Component {
             props={{
               required: true,
               label: 'Username',
-              placeholder: '',
+              placeholder: 'Ex. demo',
               autoComplete: 'username',
               name: 'username',
               id: 'LoginForm__username'
@@ -55,6 +54,7 @@ export default class LoginForm extends Component {
             props={{
               required: true,
               label: 'Password',
+              placeholder: 'Ex. password',
               autoComplete: 'current-password',
               name: 'password',
               type: 'password',
