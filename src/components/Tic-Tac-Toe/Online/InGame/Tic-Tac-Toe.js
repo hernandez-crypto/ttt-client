@@ -3,9 +3,12 @@ import Board from './Gameboard/Board/Board';
 import Legend from './Gameboard/Legend/Legend';
 import './Tic-Tac-Toe.css';
 import BoardApiService from '../../../../services/board-api-service';
-import TokenService from '../../../../services/token-service';
 
 export default class TicTacToe extends Component {
+  static defaultProps = {
+    playerId: ''
+  };
+
   state = {
     playerOne: {
       id: '',
@@ -18,7 +21,7 @@ export default class TicTacToe extends Component {
       name: ''
     },
     client_user: {
-      id: parseInt(TokenService.parseAuthToken().user_id),
+      id: this.props.playerId,
       symbol: ''
     },
     board: [0, 0, 0, 0, 0, 0, 0, 0, 0],

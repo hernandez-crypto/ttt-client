@@ -32,9 +32,9 @@ export default class JoinGameForm extends Component {
       .substring(2, 15);
     BoardApiService.createNewBoard(roomName).then((res) => {
       toggleLoading();
-      BoardApiService.getCurrentBoard(res.game.game_room)
+      BoardApiService.getCurrentBoard(res.game_room)
         .then(() => {
-          onJoinSuccess(res.game.game_room);
+          onJoinSuccess(res.game_room);
         })
         .catch((res) => {
           this.setState({ error: res.error });
