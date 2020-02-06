@@ -1,7 +1,6 @@
 # Tic-Tac-Toe Client !
 
-     - Link to live project :
-    [Tic-Tac-Toe](https://ttt-client.hernandezjulio58.now.sh/ "Live Site")
+Link to live project : [Tic-Tac-Toe](https://ttt-client.hernandezjulio58.now.sh/ 'Live Site')
 
 ## About this project
 
