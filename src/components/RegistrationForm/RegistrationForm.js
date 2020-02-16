@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import AuthApiService from '../../services/auth-api-service';
 import TokenService from '../../services/token-service';
 import { Button, TextInput } from '../Utils/Utils';
-import UserContext from '../../contexts/UserContext';
 import './RegistrationForm.css';
 
 export default class RegistrationForm extends Component {
-  static contextType = UserContext;
   static defaultProps = {
     onRegistrationSuccess: () => {}
   };

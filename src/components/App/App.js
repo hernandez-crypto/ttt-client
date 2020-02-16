@@ -16,12 +16,9 @@ import { lightTheme, darkTheme } from '../Utils//Theme/theme';
 import { GlobalStyles } from '../Utils/Theme/global';
 import { ClimbingBoxLoader } from 'react-spinners';
 import { css } from '@emotion/core';
-import UserContext from '../../contexts/UserContext';
 import './App.css';
 
 class App extends Component {
-  static contextType = UserContext;
-
   state = { theme: 'dark', hasError: false, loading: false };
 
   static getDerivedStateFromError(error) {
