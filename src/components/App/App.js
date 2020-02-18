@@ -64,6 +64,7 @@ class App extends Component {
           ) : (
             <main className="App__main">
               {hasError && <p className="red">There was an error! Oh no!</p>}
+
               <Switch>
                 <Route exact path={'/'} component={LandingPage} />
                 <Route exact path={'/offline'} component={TTTOffline} />

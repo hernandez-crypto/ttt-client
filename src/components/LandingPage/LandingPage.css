@@ -21,3 +21,13 @@
 .playOptions {
   margin: auto 0;
 }
+.changingText {
+  font-size: 1.5rem;
+}
+.happyRobots {
+  align-self: center;
+  margin-top: 30px;
+}
+
+.happyRobots img {
+}
