@@ -53,11 +53,8 @@ export default class TicTacToe extends Component {
     });
   };
 
-  componentWillMount() {
-    this.makeFetchCallAndUpdate();
-  }
-
   async componentDidMount() {
+    this.makeFetchCallAndUpdate();
     try {
       this.updateGame = setInterval(async () => {
         this.makeFetchCallAndUpdate();

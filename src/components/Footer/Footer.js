@@ -7,7 +7,11 @@ export default class Footer extends Component {
     return (
       <div className="footer__content">
         <label htmlFor="themeToggle">Theme</label>
-        <Switch name="themeToggle" onChange={this.props.toggleTheme} />
+        <Switch
+          name="themeToggle"
+          color="primary"
+          onChange={this.props.toggleTheme}
+        />
       </div>
     );
   }

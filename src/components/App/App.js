@@ -92,10 +92,10 @@ class App extends Component {
               </Switch>
             </main>
           )}
-          <footer className="App__footer">
-            <Footer toggleTheme={this.toggleTheme} />
-          </footer>
         </div>
+        <footer className="App__footer">
+          <Footer toggleTheme={this.toggleTheme} />
+        </footer>
       </ThemeProvider>
     );
   }

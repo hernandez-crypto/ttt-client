@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Permanent+Marker|Varela&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Tomorrow:500i&display=swap');
 * {
   box-sizing: border-box;
 }
@@ -36,10 +35,7 @@ p {
 label {
   font-family: 'Permanent Marker' !important;
 }
-.TTTOffline h3 {
-  font-family: 'Tomorrow';
-  font-size: 25px;
-}
+
 .blue {
   color: #477acc;
 }

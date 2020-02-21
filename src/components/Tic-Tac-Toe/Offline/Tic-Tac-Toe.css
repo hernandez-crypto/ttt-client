@@ -1,3 +1,4 @@
 .tic-tac-toe-board {
   margin: 5vh auto;
+  z-index: 50;
 }
