@@ -26,8 +26,7 @@
 }
 .happyRobots {
   align-self: center;
+  justify-content: center;
   margin-top: 30px;
-}
-
-.happyRobots img {
+  flex: 1;
 }

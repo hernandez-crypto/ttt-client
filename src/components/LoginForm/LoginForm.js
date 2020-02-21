@@ -23,6 +23,7 @@ export default class LoginForm extends Component {
       .then((res) => {
         this.props.toggleLoading();
         setTimeout(() => {
+          // forcing a timeout for 1 second
           username.value = '';
           password.value = '';
           TokenService.saveAuthToken(res.authToken);
@@ -37,35 +38,37 @@ export default class LoginForm extends Component {
   render() {
     const { error } = this.state;
     return (
-      <form className="LoginForm" onSubmit={this.handleSubmitJwtAuth}>
-        <div role="alert">{error && <p className="red">{error}</p>}</div>
-        <div className="username">
-          <TextInput
-            props={{
-              required: true,
-              label: 'Username',
-              placeholder: 'Ex. demo',
-              autoComplete: 'username',
-              name: 'username',
-              id: 'LoginForm__username'
-            }}
-          />
-        </div>
-        <div className="password">
-          <TextInput
-            props={{
-              required: true,
-              label: 'Password',
-              placeholder: 'Ex. password',
-              autoComplete: 'current-password',
-              name: 'password',
-              type: 'password',
-              id: 'LoginForm__password'
-            }}
-          />
-        </div>
-        <Button type="submit">Login</Button>
-      </form>
+      <div>
+        <form className="LoginForm" onSubmit={this.handleSubmitJwtAuth}>
+          <div role="alert">{error && <p className="red">{error}</p>}</div>
+          <div className="username">
+            <TextInput
+              props={{
+                required: true,
+                label: 'Username',
+                placeholder: 'Ex. demo',
+                autoComplete: 'username',
+                name: 'username',
+                id: 'LoginForm__username'
+              }}
+            />
+          </div>
+          <div className="password">
+            <TextInput
+              props={{
+                required: true,
+                label: 'Password',
+                placeholder: 'Ex. password',
+                autoComplete: 'current-password',
+                name: 'password',
+                type: 'password',
+                id: 'LoginForm__password'
+              }}
+            />
+          </div>
+          <Button type="submit">Login</Button>
+        </form>
+      </div>
     );
   }
 }

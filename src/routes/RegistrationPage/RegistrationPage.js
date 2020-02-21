@@ -16,11 +16,12 @@ export default class RegistrationPage extends Component {
   };
 
   render() {
+    let { toggleLoading } = this.props.props;
     return (
       <Section className="RegistrationPage">
         <h2>Register</h2>
         <RegistrationForm
-          toggleLoading={this.props.props.toggleLoading}
+          toggleLoading={toggleLoading}
           onRegistrationSuccess={this.handleRegistrationSuccess}
         />
       </Section>

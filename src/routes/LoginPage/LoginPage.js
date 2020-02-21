@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import LoginForm from '../../components/LoginForm/LoginForm';
+import Footer from '../../components/Footer/Footer';
 import { Section } from '../../components/Utils/Utils';
 
 export default class LoginPage extends Component {
@@ -17,12 +18,13 @@ export default class LoginPage extends Component {
   };
 
   render() {
+    let { toggleLoading } = this.props.props;
     return (
       <Section className="LoginPage">
         <h2>Login</h2>
         <LoginForm
           onLoginSuccess={this.handleLoginSuccess}
-          toggleLoading={this.props.props.toggleLoading}
+          toggleLoading={toggleLoading}
         />
       </Section>
     );

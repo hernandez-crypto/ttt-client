@@ -30,6 +30,7 @@ export default class RegistrationForm extends Component {
       })
       .then(() => {
         setTimeout(() => {
+          // forcing a timeout for 1 second
           username.value = '';
           password.value = '';
           this.props.onRegistrationSuccess();

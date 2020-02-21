@@ -6,27 +6,23 @@ import './LandingPage.css';
 const TEXTS = [
   'Web Multiplayer',
   'Local Multiplayer',
-  'Unbeatable Bot',
+  'Impossible Mode',
   'Play with a Friend'
 ];
 
 const LINKS = [
-  'https://media.giphy.com/media/RPZu7v6zA2WOI/giphy.gif',
   'https://media.giphy.com/media/l1Et6k00qp9fMTP8s/giphy.gif',
   'https://media.giphy.com/media/3oriNKQe0D6uQVjcIM/giphy.gif',
-  'https://media.giphy.com/media/mIZ9rPeMKefm0/giphy.gif',
-  'https://media.giphy.com/media/RPZu7v6zA2WOI/giphy.gif',
-  'https://media.giphy.com/media/tczJoRU7XwBS8/giphy.gif'
+  'https://media.giphy.com/media/RPZu7v6zA2WOI/giphy.gif'
 ];
 
 export default class LandingPage extends Component {
   state = { index: 0 };
 
-  componentDidUpdate() {
-    console.log('i ran');
+  componentDidMount() {
     setInterval(
       () => this.setState((state) => ({ index: state.index + 1 })),
-      5000 // every 5 seconds
+      8000
     );
   }
 
@@ -44,6 +40,7 @@ export default class LandingPage extends Component {
         </div>
         <div className="happyRobots">
           <img
+            width="100%"
             src={LINKS[index % LINKS.length]}
             alt={'{ ROBOTS : 1 , HUMANS : 0 }'}
           />
@@ -58,9 +55,6 @@ export default class LandingPage extends Component {
               <Link to="/online">Online</Link>
             </h2>
           </div>
-          <p style={{ textAlign: 'center' }}>
-            Select Offline or Online to Play !
-          </p>
         </div>
       </div>
     );
