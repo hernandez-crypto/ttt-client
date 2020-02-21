@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import LoginForm from '../../components/LoginForm/LoginForm';
-import Footer from '../../components/Footer/Footer';
 import { Section } from '../../components/Utils/Utils';
 
 export default class LoginPage extends Component {

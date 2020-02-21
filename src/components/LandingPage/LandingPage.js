@@ -19,13 +19,19 @@ const LINKS = [
 export default class LandingPage extends Component {
   state = { index: 0 };
 
-  componentDidMount() {
-    setInterval(
-      () => this.setState((state) => ({ index: state.index + 1 })),
-      8000
-    );
+  async componentDidMount() {
+    try {
+      this.updateIndex = setInterval(
+        () => this.setState((state) => ({ index: state.index + 1 })),
+        8000
+      );
+    } catch (e) {
+      console.log(e);
+    }
   }
-
+  componentWillUnmount() {
+    clearInterval(this.updateIndex);
+  }
   render() {
     let { index } = this.state;
 
