@@ -30,3 +30,10 @@
   margin-top: 30px;
   flex: 1;
 }
+.changingText__container {
+  margin: 0 auto;
+}
+.landingOfflineText:hover,
+.landingOnlineText:hover {
+  font-weight: 800;
+}

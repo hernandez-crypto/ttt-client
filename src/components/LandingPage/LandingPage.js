@@ -37,7 +37,7 @@ export default class LandingPage extends Component {
 
     return (
       <div className="landingPage">
-        <div>
+        <div className="changingText__container">
           <TextTransition
             text={TEXTS[index % TEXTS.length]}
             springConfig={presets.wobbly}
@@ -53,11 +53,11 @@ export default class LandingPage extends Component {
         </div>
         <div className="playOptions">
           <div className="landingLinks">
-            <h2>
+            <h2 className="landingOfflineText">
               <Link to="/offline">Offline</Link>
             </h2>
 
-            <h2>
+            <h2 className="landingOnlineText">
               <Link to="/online">Online</Link>
             </h2>
           </div>

@@ -68,15 +68,6 @@ export default class LoginForm extends Component {
           </div>
           <Button type="submit">Login</Button>
         </form>
-        <p>Sample Account : </p>
-        <ul>
-          <li>
-            <p>Username : demo</p>
-          </li>
-          <li>
-            <p>Password : password</p>
-          </li>
-        </ul>
       </div>
     );
   }
