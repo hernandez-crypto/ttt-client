@@ -4,12 +4,7 @@ import TextTransition, { presets } from 'react-text-transition';
 import TicTacToe from '../Tic-Tac-Toe/Offline/Tic-Tac-Toe';
 import './LandingPage.css';
 
-const TEXTS = [
-  'Web Multiplayer',
-  'Local Multiplayer',
-  'Impossible Mode',
-  'Play with a Friend'
-];
+const TEXTS = ['Web Multiplayer', 'Local Multiplayer', 'Play with a Friend'];
 
 export default class LandingPage extends Component {
   state = { index: 0 };
