@@ -19,7 +19,7 @@ import { css } from '@emotion/core';
 import './App.css';
 
 class App extends Component {
-  state = { theme: 'dark', hasError: false, loading: false };
+  state = { theme: 'light', hasError: false, loading: false };
 
   static getDerivedStateFromError(error) {
     return { hasError: true };

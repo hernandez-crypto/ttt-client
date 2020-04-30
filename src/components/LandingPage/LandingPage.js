@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import TextTransition, { presets } from 'react-text-transition';
+import TicTacToe from '../Tic-Tac-Toe/Offline/Tic-Tac-Toe';
 import './LandingPage.css';
 
 const TEXTS = [
@@ -8,12 +9,6 @@ const TEXTS = [
   'Local Multiplayer',
   'Impossible Mode',
   'Play with a Friend'
-];
-
-const LINKS = [
-  'https://media.giphy.com/media/l1Et6k00qp9fMTP8s/giphy.gif',
-  'https://media.giphy.com/media/3oriNKQe0D6uQVjcIM/giphy.gif',
-  'https://media.giphy.com/media/RPZu7v6zA2WOI/giphy.gif'
 ];
 
 export default class LandingPage extends Component {
@@ -44,12 +39,8 @@ export default class LandingPage extends Component {
             className="changingText"
           />
         </div>
-        <div className="happyRobots">
-          <img
-            width="100%"
-            src={LINKS[index % LINKS.length]}
-            alt={'{ ROBOTS : 1 , HUMANS : 0 }'}
-          />
+        <div className="middleContent">
+          <TicTacToe mode="computers" />
         </div>
         <div className="playOptions">
           <div className="landingLinks">

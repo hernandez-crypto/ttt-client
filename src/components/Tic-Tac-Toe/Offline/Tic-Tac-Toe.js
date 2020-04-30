@@ -27,6 +27,9 @@ export default class TicTacToe extends Component {
 
   componentDidMount() {
     this.computer = new ComputerPlayer(this.setChoice);
+    if (this.props.mode === 'computers') {
+      this.setState({ playerOne: { ...this.state.playerOne, computer: 1 } });
+    }
   }
 
   handleEndGame = (winner) => {
@@ -154,7 +157,7 @@ export default class TicTacToe extends Component {
   componentDidUpdate() {
     let { currentPlayer, playerOne, playerTwo, board } = this.state;
     let player = currentPlayer === 1 ? playerOne : playerTwo;
-    if (player.computer > 0 && currentPlayer === 2) {
+    if (player.computer > 0) {
       setTimeout(() => {
         this.computer.makeMove(player.computer, board);
       }, 1500);
@@ -182,26 +185,38 @@ export default class TicTacToe extends Component {
 
   render() {
     let { currentPlayer, board, playerOne, playerTwo, round } = this.state;
-    return (
-      <>
+
+    if (this.props.mode === 'computers') {
+      return (
         <div className="tic-tac-toe-board">
           <Board
             setChoice={this.setChoice}
             currentPlayer={currentPlayer}
             board={board}
           />
-          <Legend
-            currentPlayer={currentPlayer}
-            playerOne={playerOne.score}
-            playerTwo={playerTwo.score}
-            round={round}
-          />
-          <GameModeSelector
-            selectBotDifficulty={this.selectBotDifficulty}
-            Computer={playerTwo.computer}
-          />
         </div>
-      </>
-    );
+      );
+    } else
+      return (
+        <>
+          <div className="tic-tac-toe-board">
+            <Board
+              setChoice={this.setChoice}
+              currentPlayer={currentPlayer}
+              board={board}
+            />
+            <Legend
+              currentPlayer={currentPlayer}
+              playerOne={playerOne.score}
+              playerTwo={playerTwo.score}
+              round={round}
+            />
+            <GameModeSelector
+              selectBotDifficulty={this.selectBotDifficulty}
+              Computer={playerTwo.computer}
+            />
+          </div>
+        </>
+      );
   }
 }

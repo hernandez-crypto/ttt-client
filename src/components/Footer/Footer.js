@@ -10,6 +10,7 @@ export default class Footer extends Component {
         <Switch
           name="themeToggle"
           color="primary"
+          checked={true}
           onChange={this.props.toggleTheme}
         />
       </div>
