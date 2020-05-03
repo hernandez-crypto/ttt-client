@@ -3,6 +3,11 @@ import { Switch } from '@material-ui/core';
 import './Footer.css';
 
 export default class Footer extends Component {
+  state = { mode: true };
+  setMode = () => {
+    this.setState((state) => ({ mode: !state.mode }));
+    this.props.toggleTheme();
+  };
   render() {
     return (
       <div className="footer__content">
@@ -10,8 +15,8 @@ export default class Footer extends Component {
         <Switch
           name="themeToggle"
           color="primary"
-          checked={true}
-          onChange={this.props.toggleTheme}
+          checked={this.state.mode}
+          onChange={() => this.setMode()}
         />
       </div>
     );
